@@ -1,1 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
+
+{% block title %}我的运动记录{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>欢迎, {{ user.username }}!</h1>
+    <h2>我的运动记录</h2>
+
+    <!-- 如果用户没有记录，显示提示信息 -->
+    {% if exercises %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>运动类型</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>消耗卡路里</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for exercise in exercises %}
+            <tr>
+              <td>{{ exercise.type }}</td>
+              <td>{{ exercise.start_time }}</td>
+              <td>{{ exercise.end_time }}</td>
+              <td>{{ exercise.calorie_cost }}</td>
+              <td>
+                <a href="{% url 'exercise_record_detail' exercise.exercise_id %}" class="btn btn-info btn-sm">查看</a>
+                <a href="{% url 'delete_exercise_record' exercise.exercise_id %}" class="btn btn-danger btn-sm" onclick="return confirm('确定要删除吗?')">删除</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>您还没有任何运动记录。</p>
+    {% endif %}
+
+    <a href="{% url 'add_exercise_record' %}" class="btn btn-primary">添加运动记录</a>
+  </div>
+{% endblock %}

@@ -15,22 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+import DB_HealthManagement.views
 import HealthInfo.views
 import accounts.views
-# import views
-from HealthInfo.views import index,cover
+import health_profile.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cover/', DB_HealthManagement.views.cover, name='cover'),
     path('exercise_record/', HealthInfo.views.exercise_record_list, name="exercise_record_list"),
     path('exercise_record/<int:exerciseid>/', HealthInfo.views.exercise_record_detail, name="exercise_record_detail"),
     path('add_exercise_record/', HealthInfo.views.add_exercise_record, name="add_exercise_record"),
     path('delete_exercise_record/<int:exerciseid>/', HealthInfo.views.delete_exercise_record, name='delete_exercise_record'),
+    path('health_profile/', include('health_profile.urls')),
     path('register/', accounts.views.Register.as_view(), name='register'),  # 注册页面
     path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
-    path('user/',index, name="index"),
-    path('cover/',cover,name='cover'),
+    path('logout/', accounts.views.user_logout, name='logout'),  # 注销页面
 ]
 
 

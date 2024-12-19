@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}退出登录{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>您确定要退出登录吗?</h1>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">退出登录</button>
+    </form>
+    <a href="{% url 'index' %}" class="btn btn-secondary">取消</a>
+  </div>
+{% endblock %}
