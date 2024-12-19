@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}健康记录{% endblock %}
+
+{% block content %}
+  <h1>我的健康记录</h1>
+  {% if profiles %}
+    <ul>
+      {% for profile in profiles %}
+        <li>
+          <p>身高: {{ profile.height }} cm</p>
+          <p>体重: {{ profile.weight }} kg</p>
+          <p>血糖: {{ profile.blood_sugar }} mmol/L</p>
+          <p>血压: {{ profile.blood_pressure }}</p>
+          <p>自定义字段: {{ profile.custom_fields }}</p>
+          <a href="{% url 'delete_health_profile' profile.id %}" onclick="return confirm('确定要删除这个健康记录吗?')">删除</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>您没有健康记录。</p>
+  {% endif %}
+  <a href="{% url 'add_health_profile' %}" class="btn btn-primary">添加健康记录</a>
+{% endblock %}

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="django@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
       <DefaultCasing>lower/lower</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>|root||add|localhost|ALTER|G
-|root||root|localhost|ALTER|G
-|root||add|localhost|ALTER ROUTINE|G
+      <Grants>|root||root|localhost|ALTER|G
+|root||周平|localhost|ALTER|G
 |root||root|localhost|ALTER ROUTINE|G
+|root||周平|localhost|ALTER ROUTINE|G
 |root||root|localhost|APPLICATION_PASSWORD_ADMIN|G
 |root||mysql.infoschema|localhost|AUDIT_ABORT_EXEMPT|G
 |root||mysql.session|localhost|AUDIT_ABORT_EXEMPT|G
@@ -25,31 +25,31 @@
 |root||root|localhost|CLONE_ADMIN|G
 |root||mysql.session|localhost|CONNECTION_ADMIN|G
 |root||root|localhost|CONNECTION_ADMIN|G
-|root||add|localhost|CREATE|G
 |root||root|localhost|CREATE|G
+|root||周平|localhost|CREATE|G
 |root||root|localhost|CREATE ROLE|G
-|root||add|localhost|CREATE ROUTINE|G
 |root||root|localhost|CREATE ROUTINE|G
-|root||add|localhost|CREATE TABLESPACE|G
+|root||周平|localhost|CREATE ROUTINE|G
 |root||root|localhost|CREATE TABLESPACE|G
-|root||add|localhost|CREATE TEMPORARY TABLES|G
+|root||周平|localhost|CREATE TABLESPACE|G
 |root||root|localhost|CREATE TEMPORARY TABLES|G
-|root||add|localhost|CREATE USER|G
+|root||周平|localhost|CREATE TEMPORARY TABLES|G
 |root||root|localhost|CREATE USER|G
-|root||add|localhost|CREATE VIEW|G
+|root||周平|localhost|CREATE USER|G
 |root||root|localhost|CREATE VIEW|G
-|root||add|localhost|DELETE|G
+|root||周平|localhost|CREATE VIEW|G
 |root||root|localhost|DELETE|G
-|root||add|localhost|DROP|G
+|root||周平|localhost|DELETE|G
 |root||root|localhost|DROP|G
+|root||周平|localhost|DROP|G
 |root||root|localhost|DROP ROLE|G
 |root||root|localhost|ENCRYPTION_KEY_ADMIN|G
-|root||add|localhost|EVENT|G
 |root||root|localhost|EVENT|G
-|root||add|localhost|EXECUTE|G
+|root||周平|localhost|EVENT|G
 |root||root|localhost|EXECUTE|G
-|root||add|localhost|FILE|G
+|root||周平|localhost|EXECUTE|G
 |root||root|localhost|FILE|G
+|root||周平|localhost|FILE|G
 |root||mysql.infoschema|localhost|FIREWALL_EXEMPT|G
 |root||mysql.session|localhost|FIREWALL_EXEMPT|G
 |root||mysql.sys|localhost|FIREWALL_EXEMPT|G
@@ -60,51 +60,53 @@
 |root||root|localhost|FLUSH_USER_RESOURCES|G
 |root||root|localhost|GROUP_REPLICATION_ADMIN|G
 |root||root|localhost|GROUP_REPLICATION_STREAM|G
-|root||add|localhost|INDEX|G
 |root||root|localhost|INDEX|G
+|root||周平|localhost|INDEX|G
 |root||root|localhost|INNODB_REDO_LOG_ARCHIVE|G
 |root||root|localhost|INNODB_REDO_LOG_ENABLE|G
-|root||add|localhost|INSERT|G
 |root||root|localhost|INSERT|G
-|root||add|localhost|LOCK TABLES|G
+|root||周平|localhost|INSERT|G
 |root||root|localhost|LOCK TABLES|G
+|root||周平|localhost|LOCK TABLES|G
 |root||root|localhost|PASSWORDLESS_USER_ADMIN|G
 |root||mysql.session|localhost|PERSIST_RO_VARIABLES_ADMIN|G
 |root||root|localhost|PERSIST_RO_VARIABLES_ADMIN|G
-|root||add|localhost|PROCESS|G
 |root||root|localhost|PROCESS|G
-|root||add|localhost|REFERENCES|G
+|root||周平|localhost|PROCESS|G
 |root||root|localhost|REFERENCES|G
-|root||add|localhost|RELOAD|G
+|root||周平|localhost|REFERENCES|G
 |root||root|localhost|RELOAD|G
-|root||add|localhost|REPLICATION CLIENT|G
+|root||周平|localhost|RELOAD|G
 |root||root|localhost|REPLICATION CLIENT|G
-|root||add|localhost|REPLICATION SLAVE|G
+|root||周平|localhost|REPLICATION CLIENT|G
 |root||root|localhost|REPLICATION SLAVE|G
+|root||周平|localhost|REPLICATION SLAVE|G
 |root||root|localhost|REPLICATION_APPLIER|G
 |root||root|localhost|REPLICATION_SLAVE_ADMIN|G
 |root||root|localhost|RESOURCE_GROUP_ADMIN|G
 |root||root|localhost|RESOURCE_GROUP_USER|G
 |root||root|localhost|ROLE_ADMIN|G
-|root||add|localhost|SELECT|G
 |root||mysql.infoschema|localhost|SELECT|G
 |root||root|localhost|SELECT|G
+|root||周平|localhost|SELECT|G
 |root||root|localhost|SENSITIVE_VARIABLES_OBSERVER|G
 |root||root|localhost|SERVICE_CONNECTION_ADMIN|G
 |root||mysql.session|localhost|SESSION_VARIABLES_ADMIN|G
 |root||root|localhost|SESSION_VARIABLES_ADMIN|G
 |root||root|localhost|SET_USER_ID|G
-|root||add|localhost|SHOW DATABASES|G
 |root||root|localhost|SHOW DATABASES|G
-|root||add|localhost|SHOW VIEW|G
+|root||刘星|localhost|SHOW DATABASES|G
+|root||周平|localhost|SHOW DATABASES|G
 |root||root|localhost|SHOW VIEW|G
+|root||刘星|localhost|SHOW VIEW|G
+|root||周平|localhost|SHOW VIEW|G
 |root||root|localhost|SHOW_ROUTINE|G
-|root||add|localhost|SHUTDOWN|G
 |root||mysql.session|localhost|SHUTDOWN|G
 |root||root|localhost|SHUTDOWN|G
-|root||add|localhost|SUPER|G
+|root||周平|localhost|SHUTDOWN|G
 |root||mysql.session|localhost|SUPER|G
 |root||root|localhost|SUPER|G
+|root||周平|localhost|SUPER|G
 |root||mysql.infoschema|localhost|SYSTEM_USER|G
 |root||mysql.session|localhost|SYSTEM_USER|G
 |root||mysql.sys|localhost|SYSTEM_USER|G
@@ -113,16 +115,16 @@
 |root||root|localhost|SYSTEM_VARIABLES_ADMIN|G
 |root||root|localhost|TABLE_ENCRYPTION_ADMIN|G
 |root||root|localhost|TELEMETRY_LOG_ADMIN|G
-|root||add|localhost|TRIGGER|G
 |root||root|localhost|TRIGGER|G
-|root||add|localhost|UPDATE|G
+|root||周平|localhost|TRIGGER|G
 |root||root|localhost|UPDATE|G
+|root||周平|localhost|UPDATE|G
 |root||root|localhost|XA_RECOVER_ADMIN|G
-|root||add|localhost|grant option|G
 |root||root|localhost|grant option|G
+|root||周平|localhost|grant option|G
 performance_schema|schema||mysql.session|localhost|SELECT|G
 sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
-      <ServerVersion>8.0.39</ServerVersion>
+      <ServerVersion>8.0.40</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
@@ -1023,30 +1025,29 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <collation id="287" parent="1" name="utf8mb4_zh_0900_as_cs">
       <Charset>utf8mb4</Charset>
     </collation>
-    <schema id="288" parent="1" name="django">
+    <schema id="288" parent="1" name="db1">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="289" parent="1" name="django">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-12-19.08:16:27</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-12-19.12:23:10</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="289" parent="1" name="information_schema">
+    <schema id="290" parent="1" name="information_schema">
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
-    <schema id="290" parent="1" name="mysql">
+    <schema id="291" parent="1" name="mysql">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="291" parent="1" name="performance_schema">
+    <schema id="292" parent="1" name="performance_schema">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="292" parent="1" name="student">
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </schema>
-    <schema id="293" parent="1" name="sys">
+    <schema id="293" parent="1" name="student">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="294" parent="1" name="add">
-      <Host>localhost</Host>
-      <Plugin>caching_sha2_password</Plugin>
-    </user>
+    <schema id="294" parent="1" name="sys">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
     <user id="295" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
@@ -1066,550 +1067,17 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="299" parent="288" name="auth_group">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="300" parent="288" name="auth_group_permissions">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="301" parent="288" name="auth_permission">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="302" parent="288" name="auth_user">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="303" parent="288" name="auth_user_groups">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="304" parent="288" name="auth_user_user_permissions">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="305" parent="288" name="django_admin_log">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="306" parent="288" name="django_content_type">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="307" parent="288" name="django_migrations">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="308" parent="288" name="django_session">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <table id="309" parent="288" name="healthinfo_exerciserecord">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </table>
-    <column id="310" parent="299" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="311" parent="299" name="name">
-      <DasType>varchar(150)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <index id="312" parent="299" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="313" parent="299" name="name">
-      <ColNames>name</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="314" parent="299" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="315" parent="299" name="name">
-      <UnderlyingIndexName>name</UnderlyingIndexName>
-    </key>
-    <column id="316" parent="300" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="317" parent="300" name="group_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="318" parent="300" name="permission_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <foreign-key id="319" parent="300" name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id">
-      <ColNames>group_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_group</RefTableName>
-    </foreign-key>
-    <foreign-key id="320" parent="300" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
-      <ColNames>permission_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_permission</RefTableName>
-    </foreign-key>
-    <index id="321" parent="300" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="322" parent="300" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
-      <ColNames>group_id
-permission_id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="323" parent="300" name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm">
-      <ColNames>permission_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="324" parent="300" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="325" parent="300" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
-      <UnderlyingIndexName>auth_group_permissions_group_id_permission_id_0cd325b0_uniq</UnderlyingIndexName>
-    </key>
-    <column id="326" parent="301" name="id">
-      <AutoIncrement>29</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="327" parent="301" name="name">
-      <DasType>varchar(255)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="328" parent="301" name="content_type_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="329" parent="301" name="codename">
-      <DasType>varchar(100)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <foreign-key id="330" parent="301" name="auth_permission_content_type_id_2f476e4b_fk_django_co">
-      <ColNames>content_type_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>django_content_type</RefTableName>
-    </foreign-key>
-    <index id="331" parent="301" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="332" parent="301" name="auth_permission_content_type_id_codename_01ab375a_uniq">
-      <ColNames>content_type_id
-codename</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="333" parent="301" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="334" parent="301" name="auth_permission_content_type_id_codename_01ab375a_uniq">
-      <UnderlyingIndexName>auth_permission_content_type_id_codename_01ab375a_uniq</UnderlyingIndexName>
-    </key>
-    <column id="335" parent="302" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="336" parent="302" name="password">
-      <DasType>varchar(128)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="337" parent="302" name="last_login">
-      <DasType>datetime(6)|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="338" parent="302" name="is_superuser">
-      <DasType>tinyint(1)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="339" parent="302" name="username">
-      <DasType>varchar(150)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="340" parent="302" name="first_name">
-      <DasType>varchar(150)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <column id="341" parent="302" name="last_name">
-      <DasType>varchar(150)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>7</Position>
-    </column>
-    <column id="342" parent="302" name="email">
-      <DasType>varchar(254)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>8</Position>
-    </column>
-    <column id="343" parent="302" name="is_staff">
-      <DasType>tinyint(1)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>9</Position>
-    </column>
-    <column id="344" parent="302" name="is_active">
-      <DasType>tinyint(1)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>10</Position>
-    </column>
-    <column id="345" parent="302" name="date_joined">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>11</Position>
-    </column>
-    <index id="346" parent="302" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="347" parent="302" name="username">
-      <ColNames>username</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="348" parent="302" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="349" parent="302" name="username">
-      <UnderlyingIndexName>username</UnderlyingIndexName>
-    </key>
-    <column id="350" parent="303" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="351" parent="303" name="user_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="352" parent="303" name="group_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <foreign-key id="353" parent="303" name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id">
-      <ColNames>user_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_user</RefTableName>
-    </foreign-key>
-    <foreign-key id="354" parent="303" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
-      <ColNames>group_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_group</RefTableName>
-    </foreign-key>
-    <index id="355" parent="303" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="356" parent="303" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
-      <ColNames>user_id
-group_id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="357" parent="303" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
-      <ColNames>group_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="358" parent="303" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="359" parent="303" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
-      <UnderlyingIndexName>auth_user_groups_user_id_group_id_94350c0c_uniq</UnderlyingIndexName>
-    </key>
-    <column id="360" parent="304" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="361" parent="304" name="user_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="362" parent="304" name="permission_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <foreign-key id="363" parent="304" name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id">
-      <ColNames>user_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_user</RefTableName>
-    </foreign-key>
-    <foreign-key id="364" parent="304" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
-      <ColNames>permission_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_permission</RefTableName>
-    </foreign-key>
-    <index id="365" parent="304" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="366" parent="304" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
-      <ColNames>user_id
-permission_id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="367" parent="304" name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm">
-      <ColNames>permission_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="368" parent="304" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="369" parent="304" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
-      <UnderlyingIndexName>auth_user_user_permissions_user_id_permission_id_14a6b632_uniq</UnderlyingIndexName>
-    </key>
-    <check id="370" parent="305" name="django_admin_log_chk_1">
-      <NameSurrogate>1</NameSurrogate>
-      <Predicate>`action_flag` &gt;= 0</Predicate>
-    </check>
-    <column id="371" parent="305" name="id">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="372" parent="305" name="action_time">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="373" parent="305" name="object_id">
-      <DasType>longtext|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="374" parent="305" name="object_repr">
-      <DasType>varchar(200)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="375" parent="305" name="action_flag">
-      <DasType>smallint unsigned|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="376" parent="305" name="change_message">
-      <DasType>longtext|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <column id="377" parent="305" name="content_type_id">
-      <DasType>int|0s</DasType>
-      <Position>7</Position>
-    </column>
-    <column id="378" parent="305" name="user_id">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>8</Position>
-    </column>
-    <foreign-key id="379" parent="305" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
-      <ColNames>content_type_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>django_content_type</RefTableName>
-    </foreign-key>
-    <foreign-key id="380" parent="305" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
-      <ColNames>user_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>auth_user</RefTableName>
-    </foreign-key>
-    <index id="381" parent="305" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="382" parent="305" name="django_admin_log_content_type_id_c4bce8eb_fk_django_co">
-      <ColNames>content_type_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="383" parent="305" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
-      <ColNames>user_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="384" parent="305" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="385" parent="306" name="id">
-      <AutoIncrement>8</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="386" parent="306" name="app_label">
-      <DasType>varchar(100)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="387" parent="306" name="model">
-      <DasType>varchar(100)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <index id="388" parent="306" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="389" parent="306" name="django_content_type_app_label_model_76bd3d3b_uniq">
-      <ColNames>app_label
-model</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="390" parent="306" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="391" parent="306" name="django_content_type_app_label_model_76bd3d3b_uniq">
-      <UnderlyingIndexName>django_content_type_app_label_model_76bd3d3b_uniq</UnderlyingIndexName>
-    </key>
-    <column id="392" parent="307" name="id">
-      <AutoIncrement>21</AutoIncrement>
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="393" parent="307" name="app">
-      <DasType>varchar(255)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="394" parent="307" name="name">
-      <DasType>varchar(255)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="395" parent="307" name="applied">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <index id="396" parent="307" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="397" parent="307" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="398" parent="308" name="session_key">
-      <DasType>varchar(40)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="399" parent="308" name="session_data">
-      <DasType>longtext|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="400" parent="308" name="expire_date">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <index id="401" parent="308" name="PRIMARY">
-      <ColNames>session_key</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="402" parent="308" name="django_session_expire_date_a5c62663">
-      <ColNames>expire_date</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="403" parent="308" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="404" parent="309" name="ExerciseId">
-      <AutoIncrement>1</AutoIncrement>
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="405" parent="309" name="UserId">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="406" parent="309" name="Type">
-      <DasType>varchar(30)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="407" parent="309" name="StartTime">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="408" parent="309" name="EndTime">
-      <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="409" parent="309" name="CalorieCost">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <index id="410" parent="309" name="PRIMARY">
-      <ColNames>ExerciseId</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="411" parent="309" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
+    <user id="299" parent="1" name="刘星">
+      <Host>localhost</Host>
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
+    <user id="300" parent="1" name="周平">
+      <Host>localhost</Host>
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
+    <user id="301" parent="1" name="杨兰">
+      <Host>localhost</Host>
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
   </database-model>
 </dataSource>

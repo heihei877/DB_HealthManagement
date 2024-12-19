@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}添加健康记录{% endblock %}
+
+{% block content %}
+  <h1>添加健康记录</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">保存</button>
+  </form>
+{% endblock %}
