@@ -22,8 +22,9 @@ import accounts.views
 import health_profile.views
 
 urlpatterns = [
+    path('',DB_HealthManagement.views.cover,name='cover'),
     path('admin/', admin.site.urls),
-    path('cover/', DB_HealthManagement.views.cover, name='cover'),
+    # path('cover/', DB_HealthManagement.views.cover, name='cover'),
     path('exercise_record/', HealthInfo.views.exercise_record_list, name="exercise_record_list"),
     path('exercise_record/<int:exerciseid>/', HealthInfo.views.exercise_record_detail, name="exercise_record_detail"),
     path('add_exercise_record/', HealthInfo.views.add_exercise_record, name="add_exercise_record"),
