@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import HealthInfo.views
+import accounts.views
 # import views
 from HealthInfo.views import index
 
@@ -26,5 +27,7 @@ urlpatterns = [
     path('exercise_record/<int:exerciseid>/', HealthInfo.views.exercise_record_detail, name="exercise_record_detail"),
     path('add_exercise_record/', HealthInfo.views.add_exercise_record, name="add_exercise_record"),
     path('delete_exercise_record/<int:exerciseid>/', HealthInfo.views.delete_exercise_record, name='delete_exercise_record'),
+    path('register/', accounts.views.Register.as_view(), name='register'),  # 注册页面
+    path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
     path('user/',index, name="index"),
 ]

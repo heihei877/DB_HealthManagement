@@ -1,0 +1,22 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>用户注册</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="username" class="form-label">用户名：</label>
+      <input type="text" name="username" id="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">密码：</label>
+      <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="check_password" class="form-label">确认密码：</label>
+      <input type="password" name="check_password" id="check_password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">注册</button>
+  </form>
+  <p>已有账号？<a href="{% url 'login' %}">登录</a></p>
+{% endblock %}
