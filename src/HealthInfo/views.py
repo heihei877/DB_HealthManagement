@@ -51,4 +51,9 @@ def delete_exercise_record(request, exerciseid):
 
 # 返回index.html页面
 def index(request):
-    return render(request, 'base.html')
+    if not request.user.is_authenticated:
+        return redirect('login')  # 如果用户未登录，跳转到登录页面
+
+    # 获取当前用户的运动记录
+    exercises = ExerciseRecord.objects.filter(user_id=request.user.id)
+    return render(request, 'index.html', {'exercises': exercises})

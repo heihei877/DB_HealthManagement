@@ -65,3 +65,8 @@ class Login(View):
         else:
             messages.error(request, "用户名或密码错误！")
             return redirect(reverse('login'))
+
+
+def user_logout(request):
+    logout(request)  # 执行注销操作
+    return redirect('login')  # 注销后重定向到登录页面
