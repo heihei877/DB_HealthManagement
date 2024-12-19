@@ -22,6 +22,9 @@ from HealthInfo.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('exercise_record/', HealthInfo.views.exercise_record_view),
+    path('exercise_record/', HealthInfo.views.exercise_record_list, name="exercise_record_list"),
+    path('exercise_record/<int:exerciseid>/', HealthInfo.views.exercise_record_detail, name="exercise_record_detail"),
+    path('add_exercise_record/', HealthInfo.views.add_exercise_record, name="add_exercise_record"),
+    path('delete_exercise_record/<int:exerciseid>/', HealthInfo.views.delete_exercise_record, name='delete_exercise_record'),
     path('user/',index, name="index"),
 ]

@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6951c126-ff29-4dfc-9550-71d6da312d17" name="变更" comment="" />
+    <list default="true" id="6951c126-ff29-4dfc-9550-71d6da312d17" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/src/HealthInfo/migrations/0003_rename_caloriecost_exerciserecord_calorie_cost_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accounts/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DB_HealthManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DB_HealthManagement.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/DB_HealthManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/DB_HealthManagement.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DB_HealthManagement/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB_HealthManagement/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DB_HealthManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB_HealthManagement/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HealthInfo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealthInfo/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HealthInfo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealthInfo/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/exercise_record.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/exercise_record_list.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +27,15 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2qOELdNMiuJeI692ghgWd3YDv7A" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -26,14 +46,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Django 服务器.DB_HealthManagement.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "Z:/Some_experiment_project/DB_HealthManagement/static/bootstrap/css",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/13959/Desktop/DB_HealthManagement",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -49,6 +76,41 @@
       <recent name="Z:\Some_experiment_project\DB_HealthManagement\static\bootstrap" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="DB_HealthManagement" type="Python.DjangoServer" factoryName="Django server">
+      <module name="DB_HealthManagement" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="DB_HealthManagement.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -59,10 +121,23 @@
       <updated>1734525166386</updated>
       <workItem from="1734525195139" duration="6048000" />
       <workItem from="1734585171651" duration="3737000" />
+      <workItem from="1734595315663" duration="1370000" />
+      <workItem from="1734596700876" duration="4589000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
