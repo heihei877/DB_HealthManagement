@@ -52,3 +52,6 @@ def delete_exercise_record(request, exerciseid):
 # 返回index.html页面
 def index(request):
     return render(request, 'base.html')
+
+def cover(request):
+    return render(request,'cover.html')
