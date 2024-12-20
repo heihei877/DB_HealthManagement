@@ -1,3 +1,4 @@
+from django.contrib.gis.measure import pretty_name
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.models import User
@@ -42,13 +43,12 @@ class Register(View):
 
 
 class Login(View):
-
     def get(self, request):
         # 已登录用户不允许再次登录
+        print(request.user.is_authenticated)
         if request.user.is_authenticated:
-            return redirect(reverse('index'))
+            return redirect('index')
         return render(request, 'accounts/login.html')
-        #     return render(request,'login.html')
 
     def post(self, request):
         username = request.POST.get('username', '')
@@ -57,16 +57,17 @@ class Login(View):
         # 检查空值
         if not username or not password:
             messages.error(request, "用户名和密码不能为空！")
-            return redirect(reverse('login'))
+            return redirect(reverse('login'))  # 重新定向到登录页，显示错误信息
 
         # 验证用户是否存在
         user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect(reverse('index'))
+
+        if user is not None:
+            login(request, user)  # 用户验证成功后，进行登录
+            return redirect('index')  # 登录成功，跳转到首页
         else:
-            messages.error(request, "用户名或密码错误！")
-            return redirect(reverse('login'))
+            messages.error(request, "用户名或密码错误！")  # 用户名或密码错误
+            return redirect(reverse('login'))  # 登录失败，返回登录页
 
 
 def user_logout(request):
