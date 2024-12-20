@@ -4,15 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注销</title>
-    <script type="text/javascript">
-        // 设置 3 秒后跳转到登录页面
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/style.default.css" id="theme-stylesheet">
+    <style>
+        /* 页面整体布局 */
+        .page {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f6f8;
+        }
+
+        .form-holder {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert {
+            max-width: 600px; /* 修改最大宽度 */
+            margin: 10px auto; /* 保持居中对齐 */
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            font-size: 1.2rem; /* 调整字体大小（可选） */
+            padding: 20px; /* 调整内边距，增大消息框 */
+        }
+
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #888;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div class="form-holder has-shadow">
+            <h2>您已成功注销</h2>
+            <p>正在跳转到登录页面...</p>
+
+            <!-- 提示消息框 -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>成功注销！</strong> 系统将在 3 秒后自动跳转到登录页面。
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <button class="btn btn-primary" onclick="window.location.href='{% url 'login' %}';">立即返回登录</button>
+        </div>
+    </div>
+    
+    <script>
+        // 设置3秒后跳转到登录页面
         setTimeout(function() {
             window.location.href = "{% url 'login' %}";  // 假设登录页面的 URL 名称为 'login'
         }, 3000);  // 3000 毫秒即 3 秒
+
+        // 自动隐藏消息框
+        $(".alert").delay(3000).fadeOut(500); // 3秒后自动消失
     </script>
-</head>
-<body>
-    <h2>您已成功注销。</h2>
-    <p>正在跳转到登录页面...</p>
+
 </body>
 </html>
