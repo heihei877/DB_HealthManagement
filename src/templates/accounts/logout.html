@@ -1,14 +1,18 @@
-{% extends 'base_generic.html' %}
-
-{% block title %}退出登录{% endblock %}
-
-{% block content %}
-  <div class="container">
-    <h1>您确定要退出登录吗?</h1>
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">退出登录</button>
-    </form>
-    <a href="{% url 'index' %}" class="btn btn-secondary">取消</a>
-  </div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注销</title>
+    <script type="text/javascript">
+        // 设置 3 秒后跳转到登录页面
+        setTimeout(function() {
+            window.location.href = "{% url 'login' %}";  // 假设登录页面的 URL 名称为 'login'
+        }, 3000);  // 3000 毫秒即 3 秒
+    </script>
+</head>
+<body>
+    <h2>您已成功注销。</h2>
+    <p>正在跳转到登录页面...</p>
+</body>
+</html>

@@ -70,5 +70,4 @@ class Login(View):
 
 def user_logout(request):
     logout(request)  # 执行注销操作
-    messages.info(request, "您已成功注销！")  # 提示注销成功
-    return redirect('login')  # 注销后重定向到登录页面
+    return render(request, 'accounts/logout.html')
