@@ -4,14 +4,35 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Login</title>
-  <meta name="description" content="VigorLoop健康管理系统">
+  <meta name="description" content="VigorLoop 健康管理系统">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
   <link rel="stylesheet" href="/static/bootstrap/css/style.default.css" id="theme-stylesheet">
   <style>
+    /* 消息框样式调整 */
     .alert {
-      max-width: 400px; /* 控制消息框宽度 */
-      margin: 10px auto; /* 中心对齐 */
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 400px;
+      z-index: 9999; /* 保证消息框在最前面 */
+    }
+
+    /* 防止消息框占用空间，设置透明的背景 */
+    .alert-container {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      pointer-events: none; /* 防止干扰其他操作 */
+    }
+
+    /* 避免影响表单，增加表单的层级 */
+    .form-holder {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
@@ -27,7 +48,7 @@
                 <div class="logo">
                   <h1>欢迎登录</h1>
                 </div>
-                <p>VigorLoop健康管理系统</p>
+                <p>VigorLoop 健康管理系统</p>
               </div>
             </div>
           </div>
@@ -36,22 +57,21 @@
             <div class="form d-flex align-items-center">
               <div class="content">
                 <!-- Login form -->
-                <form method="POST" action="{% url 'login' %}" class="form-validate" id="loginFrom">
+                <form method="POST" action="{% url 'login' %}" class="form-validate" id="loginForm">
                   {% csrf_token %}
 
                   <!-- Messages Section -->
-                  {% if messages %}
-                    <div class="container">
-                      {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                          {{ message }}
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
+                  <div class="alert-container">
+                    {% if messages %}
+                      <div class="container">
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
 
                   <!-- Username Input -->
                   <div class="form-group">
