@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 from exercise_info import models
 
 from django.http import HttpResponse, Http404
@@ -32,13 +34,21 @@ def exercise_record_detail(request, exerciseid):
 
 # 增加运动记录
 def add_exercise_record(request):
+    current_user = request.user
+
     if request.method == 'POST':
         form = ExerciseRecordForm(request.POST)
+
         if form.is_valid():
-            form.save()  # 保存数据到数据库
-            return redirect('exercise_record_list')  # 保存后跳转到运动记录列表页
+            exercise_record = form.save(commit=False)
+            exercise_record.user_id = current_user.id  # 填充 user_id
+            exercise_record.save()  # 保存数据
+            return redirect('exercise_record_list')
+        else:
+            print(form.errors)
+            messages.error(request, "无效的运动记录！")
     else:
-        form = ExerciseRecordForm()  # 初始化一个空表单
+        form = ExerciseRecordForm()
 
     return render(request, 'exercise_info/add_exercise_record.html', {'form': form})
 
