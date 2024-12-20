@@ -1,20 +1,18 @@
-from django.contrib.gis.measure import pretty_name
-from django.shortcuts import render, redirect
-from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.shortcuts import render, redirect
+from django.views.generic import View
 from django.contrib import messages
 from django.urls import reverse
 
 
 class Register(View):
-
     def get(self, request):
         # 已登录用户不允许再次注册
         if request.user.is_authenticated:
-            return redirect(reverse('index'))
+            messages.info(request, "您已登录，无法再次注册！")  # 增加提示信息
+            return redirect(reverse('index'))  # 跳转到首页
         return render(request, 'accounts/register.html')
-        # return render(request,'register.html')
 
     def post(self, request):
         username = request.POST.get('username', '')
@@ -45,9 +43,9 @@ class Register(View):
 class Login(View):
     def get(self, request):
         # 已登录用户不允许再次登录
-        print(request.user.is_authenticated)
         if request.user.is_authenticated:
-            return redirect('index')
+            messages.info(request, "您已登录，无法再次登录！")  # 增加提示信息
+            return redirect('index')  # 跳转到首页
         return render(request, 'accounts/login.html')
 
     def post(self, request):
@@ -72,4 +70,5 @@ class Login(View):
 
 def user_logout(request):
     logout(request)  # 执行注销操作
+    messages.info(request, "您已成功注销！")  # 提示注销成功
     return redirect('login')  # 注销后重定向到登录页面
