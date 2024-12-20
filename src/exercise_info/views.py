@@ -25,7 +25,6 @@ def exercise_record_list(request):
             'seconds': seconds
         })
     return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises_with_duration})
-    # return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises})
 
 
 # 返回指定id的运动记录
