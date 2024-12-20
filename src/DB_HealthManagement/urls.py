@@ -17,23 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import DB_HealthManagement.views
-import HealthInfo.views
 import accounts.views
-import health_profile.views
 
 urlpatterns = [
     path('',DB_HealthManagement.views.cover,name='cover'),
     path('admin/', admin.site.urls),
     path('index/', DB_HealthManagement.views.index, name='index'),
-    path('exercise_record/', HealthInfo.views.exercise_record_list, name="exercise_record_list"),
-    path('exercise_record/<int:exerciseid>/', HealthInfo.views.exercise_record_detail, name="exercise_record_detail"),
-    path('add_exercise_record/', HealthInfo.views.add_exercise_record, name="add_exercise_record"),
-    path('delete_exercise_record/<int:exerciseid>/', HealthInfo.views.delete_exercise_record, name='delete_exercise_record'),
-    path('health_profile/', include('health_profile.urls')),
     path('register/', accounts.views.Register.as_view(), name='register'),  # 注册页面
     # path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
     path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
     path('logout/', accounts.views.user_logout, name='logout'),  # 注销页面
+    path('health_profile/', include('health_profile.urls')),
+    path('exercise_info/', include('exercise_info.urls')),
+
 ]
 
 

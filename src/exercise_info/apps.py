@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class HealthinfoConfig(AppConfig):
+class ExerciseInfoConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'HealthInfo'
+    name = 'exercise_info'

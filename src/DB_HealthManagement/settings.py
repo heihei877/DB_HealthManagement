@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'HealthInfo.apps.HealthinfoConfig',
+    'exercise_info.apps.ExerciseInfoConfig',
     'accounts.apps.AccountsConfig',
     'health_profile.apps.HealthProfileConfig'
 ]

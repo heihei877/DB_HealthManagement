@@ -1,4 +1,4 @@
-from HealthInfo import models
+from exercise_info import models
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, render, redirect
@@ -11,23 +11,23 @@ from .forms import ExerciseRecordForm
 # 返回所有的运动记录
 def exercise_record_list(request):
     exercises = models.ExerciseRecord.objects.all()
-    return render(request, "exercise_record_list.html", {"exercises": exercises})
+    return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises})
 
 
 # 返回指定id的运动记录
 def exercise_record_detail(request, exerciseid):
     if exerciseid > 0:
         exercise = get_object_or_404(ExerciseRecord, exercise_id=exerciseid)
-        return render(request, 'exercise_record_detail.html', {'exercise': exercise})
+        return render(request, 'exercise_info/exercise_record_detail.html', {'exercise': exercise})
     else:
         exerciseid = request.GET.get('exerciseid', None)
         if exerciseid:
             try:
                 exercise = ExerciseRecord.objects.get(exercise_id=exerciseid)
-                return render(request, 'exercise_record_detail.html', {'exercise': exercise})
+                return render(request, 'exercise_info/exercise_record_detail.html', {'exercise': exercise})
             except ExerciseRecord.DoesNotExist:
                 raise Http404("运动记录未找到。")
-        return render(request, 'exercise_record_list.html')
+        return render(request, 'exercise_info/exercise_record_list.html')
 
 
 # 增加运动记录
@@ -40,7 +40,7 @@ def add_exercise_record(request):
     else:
         form = ExerciseRecordForm()  # 初始化一个空表单
 
-    return render(request, 'add_exercise_record.html', {'form': form})
+    return render(request, 'exercise_info/add_exercise_record.html', {'form': form})
 
 
 # 删除运动记录
