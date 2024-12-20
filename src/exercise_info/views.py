@@ -12,8 +12,20 @@ from .forms import ExerciseRecordForm
 
 # 返回所有的运动记录
 def exercise_record_list(request):
-    exercises = models.ExerciseRecord.objects.all()
-    return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises})
+    exercises = models.ExerciseRecord.objects.all().order_by('exercise_id')
+    exercises_with_duration = []
+    for exercise in exercises:
+        duration = exercise.end_time - exercise.start_time
+        hours, remainder = divmod(duration.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        exercises_with_duration.append({
+            'exercise': exercise,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        })
+    return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises_with_duration})
+    # return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises})
 
 
 # 返回指定id的运动记录
