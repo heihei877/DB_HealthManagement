@@ -169,7 +169,7 @@
                                     <!--<img class="img-circle img-user media-object" src="/static/nifty/img/profile-photos/1.png" alt="Profile Picture">-->
                                     <i class="demo-pli-male ic-user"></i>
                                 </span>
-                                <div class="username hidden-xs">Aaron Chavez</div>
+                                <div class="username hidden-xs">{% if user.is_authenticated %}{{ user.username }}{% else %}未登录用户{% endif %}</div>
                             </a>
 
 
@@ -177,7 +177,7 @@
 
                                 <!-- Dropdown heading  -->
                                 <div class="pad-all bord-btm">
-                                    欢迎使用VigorLoop！
+                                    欢迎使用 VigorLoop！
                                 </div>
 
 
@@ -624,7 +624,7 @@
                                             <img class="img-circle img-sm img-border" src="/static/nifty/img/profile-photos/1.png" alt="Profile Picture">
                                         </div>
                                         <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
-                                            <p class="mnp-name">Aaron Chavez</p>
+                                            <p class="mnp-name">{% if user.is_authenticated %}{{ user.username }}{% else %}未登录用户{% endif %}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -636,7 +636,7 @@
 
 						            <!--Menu list item-->
 						            <li class="active-link">
-						                <a href="#">
+						                <a href="/index/">
 						                    <i class="demo-psi-home"></i>
 						                    <span class="menu-title">
 												<strong>首页</strong>
@@ -646,20 +646,20 @@
 
 						            <!--Menu list item-->
 						            <li>
-						                <a href="TODO:健康">
+						                <a href="/exercise_info/exercise_record/">
 						                    <i class="demo-psi-boot-2"></i>
 						                    <span class="menu-title">
-												<strong>运动数据分析</strong>
+												<strong>我的运动数据</strong>
 											</span>
 						                </a>
 						            </li>
 
                                     <!--Menu list item-->
 						            <li>
-						                <a href="TODO:健康">
+						                <a href="/health_profile/">
 						                    <i class="demo-psi-receipt-4"></i>
 						                    <span class="menu-title">
-												<strong>健康数据分析</strong>
+												<strong>我的健康数据</strong>
 											</span>
 						                </a>
 						            </li>

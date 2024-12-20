@@ -1,0 +1,62 @@
+<!-- healthinfo/templates/exercise_record_list.html -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运动记录</title>
+</head>
+<body>
+    <h1>运动记录</h1>
+
+    {% if exercises %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>运动ID</th>
+                    <th>用户ID</th>
+                    <th>运动类型</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>消耗卡路里</th>
+                    <th>查看详情</th>
+                    <th>删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                    <tr>
+                        <td>{{ exercise.exercise_id }}</td>
+                        <td>{{ exercise.user_id }}</td>
+                        <td>{{ exercise.type }}</td>
+                        <td>{{ exercise.start_time }}</td>
+                        <td>{{ exercise.end_time }}</td>
+                        <td>{{ exercise.calorie_cost }}</td>
+                        <td><a href="{% url 'exercise_record_detail' exercise.exercise_id %}">查看详情</a></td>
+                        <td>
+                            <!-- 删除按钮 -->
+                            <form action="{% url 'delete_exercise_record' exercise.exercise_id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" onclick="return confirm('确定要删除该条记录吗？')">删除</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>没有运动记录。</p>
+    {% endif %}
+
+    <h2>通过运动ID查询</h2>
+    <form method="GET" action="{% url 'exercise_record_detail' 0 %}">
+        <input type="number" name="exerciseid" placeholder="请输入运动ID" required>
+        <button type="submit">查询</button>
+    </form>
+
+    <h2>添加运动记录</h2>
+    <a href="{% url 'add_exercise_record' %}">添加</a>
+
+</body>
+</html>
