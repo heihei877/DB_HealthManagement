@@ -33,7 +33,9 @@ body {
 .sidebar {
     display: none;
 }
-
+.sidebar {
+    width: 200px; /* 你可以根据需要调整这个值 */
+}
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
@@ -58,16 +60,50 @@ body {
 }
 
 .nav-sidebar > li > a {
-    padding-right: 20px;
-    padding-left: 20px;
+    /*padding-left: 50px; !* 左边距 *!*/
+    /*padding-left: 20px;*/
+    height: 80px; /* 你可以根据需要调整这个值 */
+    font-size: 20px; /* 你可以根据需要调整这个值 */
+    line-height: 60px; /* 根据你的高度设置调整这个值 */
 }
+.nav-sidebar li a[href='#分析报告'] {
+    padding-left: 50px; /* 你可以根据需要调整这个值 */
+}
+
+.nav-sidebar li a[href='#运动数据分析'] {
+    padding-left: 50px; /* 你可以根据需要调整这个值 */
+}
+
+.nav-sidebar li a[href='#健康数据分析'] {
+    padding-left: 30px; /* 你可以根据需要调整这个值 */
+}
+
+/*.nav-sidebar >  li  > b {*/
+/*    padding-left: 40px; !* 左边距 *!*/
+/*    !*padding-left: 20px;*!*/
+/*    height: 80px; !* 你可以根据需要调整这个值 *!*/
+/*    font-size: 20px; !* 你可以根据需要调整这个值 *!*/
+/*    line-height: 60px; !* 根据你的高度设置调整这个值 *!*/
+/*    color: #0a6da6*/
+/*}*/
 
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-    color: #fff;
-    background-color: #428bca;
+    /*color: #fff;*/
+    background-color: #dadada;
 }
+/* 设置 active 项的高度 */
+.nav-sidebar > .active > a {
+    height: 80px; /* 你可以根据需要调整这个值 */
+    font-size: 20px; /* 你可以根据需要调整这个值 */
+    line-height: 60px; /* 根据你的高度设置调整这个值 */
+    padding-left: 60px; /* 左边距 */
+
+    /*padding-right: 25px; !* 右边距 *!*/
+}
+
+
 
 
 /*
@@ -131,4 +167,10 @@ body {
 
 .navbar-inverse .navbar-nav > li > a:hover {
   color: #ffd700; /* 设置导航链接悬停时的颜色 */
+}
+
+.navbar-brand,
+.navbar-nav > li > a {
+    height: 60px; /* 与导航栏高度一致 */
+    line-height: 40px; /* 垂直居中文本 */
 }
