@@ -29,7 +29,7 @@
     <link href="/static/nifty/css/demo/nifty-demo.min.css" rel="stylesheet">
 
 
-        
+
     <!--Switchery [ OPTIONAL ]-->
     <link href="/static/nifty/plugins/switchery/switchery.min.css" rel="stylesheet">
 
@@ -65,7 +65,7 @@
 
 
 
-    
+
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
@@ -91,11 +91,11 @@
 
 
     <!--=================================================-->
-    
+
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="/static/nifty/js/demo/nifty-demo.min.js"></script>
 
-    
+
     <!--Switchery [ OPTIONAL ]-->
     <script src="/static/nifty/plugins/switchery/switchery.min.js"></script>
 
@@ -244,6 +244,9 @@
                 <!--===================================================-->
                     <div class="col-lg-12" >
                         <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">新增您的运动数据</h3>
+                            </div>
                             <!-- BASIC FORM ELEMENTS -->
                             <!--===================================================-->
                             <form method="POST" id="exerciseForm" class="panel-body form-horizontal form-padding">
@@ -263,8 +266,6 @@
                                     </div>
                                 </div>
 
-                                <hr class="new-section-sm bord-no">
-                                
                                 <!-- 开始时间 -->
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="start_time">开始时间:</label>
@@ -272,8 +273,6 @@
                                         <input type="datetime-local" name="start_time" id="start_time" class="form-control" required>
                                     </div>
                                 </div>
-
-                                <hr class="new-section-sm bord-no">
 
                                 <!-- 结束时间 -->
                                 <div class="form-group">
@@ -283,8 +282,6 @@
                                     </div>
                                 </div>
 
-                                <hr class="new-section-sm bord-no">
-
                                 <!-- 消耗卡路里 -->
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="calorie_cost">消耗卡路里:</label>
@@ -293,13 +290,9 @@
                                     </div>
                                 </div>
 
-                                <hr class="new-section-sm bord-no">
-
                                 <!-- 提交按钮 -->
-                                <div class="form-group">
-                                    <div class="col-md-offset-6">
-                                        <button type="submit" class="btn btn-primary btn-rounded">提交</button>
-                                    </div>
+                                <div class="panel-footer text-right">
+                                    <button class="btn btn-success" type="submit">提交运动记录</button>
                                 </div>
                             </form>
                             <!--===================================================-->
