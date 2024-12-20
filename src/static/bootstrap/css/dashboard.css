@@ -66,16 +66,17 @@ body {
     font-size: 20px; /* 你可以根据需要调整这个值 */
     line-height: 60px; /* 根据你的高度设置调整这个值 */
 }
-.nav-sidebar li a[href='#分析报告'] {
+.nav-sidebar li:nth-child(2) a {
     padding-left: 50px; /* 你可以根据需要调整这个值 */
 }
 
-.nav-sidebar li a[href='#运动数据分析'] {
-    padding-left: 50px; /* 你可以根据需要调整这个值 */
+
+.nav-sidebar li:nth-child(3) a {
+    padding-left: 40px; /* 你可以根据需要调整这个值 */
 }
 
-.nav-sidebar li a[href='#健康数据分析'] {
-    padding-left: 30px; /* 你可以根据需要调整这个值 */
+.nav-sidebar li:nth-child(4) a  {
+    padding-left: 40px; /* 你可以根据需要调整这个值 */
 }
 
 /*.nav-sidebar >  li  > b {*/
@@ -154,6 +155,7 @@ body {
 }
 
 .navbar-inverse .navbar-brand {
+    font-size: 25px;
     color: #fff; /* 设置品牌名称的颜色 */
 }
 
@@ -169,7 +171,11 @@ body {
   color: #ffd700; /* 设置导航链接悬停时的颜色 */
 }
 
-.navbar-brand,
+.navbar-brand{
+    height: 60px; /* 与导航栏高度一致 */
+    line-height: 30px; /* 垂直居中文本 */
+}
+
 .navbar-nav > li > a {
     height: 60px; /* 与导航栏高度一致 */
     line-height: 40px; /* 垂直居中文本 */
