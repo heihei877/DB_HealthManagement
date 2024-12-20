@@ -13,6 +13,7 @@ class Register(View):
         if request.user.is_authenticated:
             return redirect(reverse('index'))
         return render(request, 'accounts/register.html')
+        # return render(request,'register.html')
 
     def post(self, request):
         username = request.POST.get('username', '')
@@ -47,6 +48,7 @@ class Login(View):
         if request.user.is_authenticated:
             return redirect(reverse('index'))
         return render(request, 'accounts/login.html')
+        #     return render(request,'login.html')
 
     def post(self, request):
         username = request.POST.get('username', '')

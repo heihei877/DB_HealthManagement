@@ -31,6 +31,7 @@ urlpatterns = [
     path('delete_exercise_record/<int:exerciseid>/', HealthInfo.views.delete_exercise_record, name='delete_exercise_record'),
     path('health_profile/', include('health_profile.urls')),
     path('register/', accounts.views.Register.as_view(), name='register'),  # 注册页面
+    # path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
     path('login/', accounts.views.Login.as_view(), name='login'),  # 登录页面
     path('logout/', accounts.views.user_logout, name='logout'),  # 注销页面
 ]
