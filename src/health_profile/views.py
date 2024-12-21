@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import View
 from .models import HealthProfile
@@ -84,3 +84,10 @@ class health_profile_list(View):
             'blood_sugar_data': json.dumps(blood_sugar_data),
             'systolic_diastolic_bp_data': json.dumps(systolic_diastolic_bp_data),
         })
+
+@method_decorator(login_required, name='dispatch')
+class delete_health_profile(View):
+    def post(self, request, health_profile_id):
+        health_profile = get_object_or_404(HealthProfile, id=health_profile_id, user=request.user)
+        health_profile.delete()
+        return redirect('health_profile_list')
