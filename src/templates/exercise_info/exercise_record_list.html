@@ -267,18 +267,14 @@
                                     // 获取当前按钮所绑定的 exercise_id
                                     var exerciseId = $(this).data('exercise-id');
                                     var row = $(this).closest('tr');  // 获取当前按钮所在的表格行
-
-                                    // 弹出确认框，确认是否删除
-                                    if (confirm("确认删除这条记录吗？")) {
-                                        // 发送 AJAX 请求到删除的 URL
-                                        $.ajax({
-                                            url: '/exercise_info/delete_exercise_record/' + exerciseId + '/',  // 删除请求的 URL，包含 exercise_id
-                                            type: 'POST',  // 使用 POST 方法
-                                            data: {
-                                                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),  // 传递 CSRF 令牌
-                                            },
-                                        });
-                                    }
+                                    // 发送 AJAX 请求到删除的 URL
+                                    $.ajax({
+                                        url: '/exercise_info/delete_exercise_record/' + exerciseId + '/',  // 删除请求的 URL，包含 exercise_id
+                                        type: 'POST',  // 使用 POST 方法
+                                        data: {
+                                            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),  // 传递 CSRF 令牌
+                                        },
+                                    });
                                 });
                             });
 
