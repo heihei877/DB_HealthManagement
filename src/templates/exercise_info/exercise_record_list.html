@@ -204,11 +204,12 @@
                                             <th class="text-center">结束时间</th>
                                             <th class="text-center">耗时</th>
                                             <th class="text-center">消耗卡路里</th>
+                                            <th class="text-center">操作</th> <!-- 新增操作列 -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for exercise_data in exercises %}
-                                            <tr>
+                                            <tr data-exercise-id="{{ exercise_data.exercise.exercise_id }}">
                                                 <td class="text-center">{{ exercise_data.exercise.exercise_id }}</td>
                                                 <td class="text-center">{{ exercise_data.exercise.type }}</td>
                                                 <td class="text-center"><span class="text-muted"><i class="fa fa-clock-o"></i> {{ exercise_data.exercise.start_time|date:"Y-m-d H:i:s" }}</span></td>
@@ -219,14 +220,22 @@
                                                     {{ exercise_data.seconds }} 秒
                                                 </td>
                                                 <td class="text-center">{{ exercise_data.exercise.calorie_cost }} 卡</td>
+                                                <td class="text-center">
+                                                    <!-- 删除按钮 -->
+                                                    <form method="POST" action="{% url 'delete_exercise_record' exercise_data.exercise.exercise_id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger btn-sm delete-btn">删除</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         {% empty %}
                                             <tr>
-                                                <td colspan="6">没有找到记录。</td>
+                                                <td colspan="7">没有找到记录。</td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                         <!--===================================================-->
@@ -242,14 +251,37 @@
                                 }
                             });
 
-                            $('#exercise-record-table').on('click', 'tr', function () {
-                                if ($(this).hasClass('selected')) {
-                                    $(this).removeClass('selected');
-                                } else {
-                                    rowSelection.$('tr.selected').removeClass('selected');
-                                    $(this).addClass('selected');
-                                }
+                            <!--暂时禁用了选中逻辑-->
+                            {#$('#exercise-record-table').on('click', 'tr', function () {#}
+                            {#    if ($(this).hasClass('selected')) {#}
+                            {#        $(this).removeClass('selected');#}
+                            {#    } else {#}
+                            {#        rowSelection.$('tr.selected').removeClass('selected');#}
+                            {#        $(this).addClass('selected');#}
+                            {#    }#}
+                            {# });#}
+
+                            $(document).ready(function() {
+                                // 监听所有删除按钮的点击事件
+                                $('.delete-btn').click(function() {
+                                    // 获取当前按钮所绑定的 exercise_id
+                                    var exerciseId = $(this).data('exercise-id');
+                                    var row = $(this).closest('tr');  // 获取当前按钮所在的表格行
+
+                                    // 弹出确认框，确认是否删除
+                                    if (confirm("确认删除这条记录吗？")) {
+                                        // 发送 AJAX 请求到删除的 URL
+                                        $.ajax({
+                                            url: '/exercise_info/delete_exercise_record/' + exerciseId + '/',  // 删除请求的 URL，包含 exercise_id
+                                            type: 'POST',  // 使用 POST 方法
+                                            data: {
+                                                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),  // 传递 CSRF 令牌
+                                            },
+                                        });
+                                    }
+                                });
                             });
+
                         </script>
 
                     </div>
