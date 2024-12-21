@@ -4,8 +4,8 @@ from exercise_info import models
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, render, redirect
-from .models import ExerciseRecord
-from .forms import ExerciseRecordForm
+from .models import ExerciseRecord, ExerciseGoal
+from .forms import ExerciseRecordForm, ExerciseGoalForm
 
 
 # Create your views here.
@@ -70,3 +70,24 @@ def delete_exercise_record(request, exerciseid):
     exercise.delete()
     return redirect('exercise_record_list')
 
+# 返回所有运动目标
+def exercise_goal_list(request):
+    goals = ExerciseGoal.objects.all()
+    return render(request, 'exercise_goal_list.html', {'goals': goals})
+
+# 增加运动目标
+def add_exercise_goal(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ExerciseGoalForm(request.POST)
+        if form.is_valid():
+            goal = form.save(commit=False)
+            ExerciseGoal.user_id = current_user.id
+            goal.save()
+            return redirect('exercise_goal_list')
+        else:
+            print(form.errors)
+            messages.error(request, "无效的运动目标！")
+    else:
+        form = ExerciseRecordForm()
+    return render(request, 'exercise_info/add_exercise_goal.html', {'form': form})

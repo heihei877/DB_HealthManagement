@@ -12,4 +12,13 @@ class ExerciseRecord(models.Model):
     end_time = models.DateTimeField()
     calorie_cost = models.IntegerField()
 
+class ExerciseGoal(models.Model):
+    exerciseGoal_id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
+    type = models.CharField(max_length=30)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    target_calorie_cost = models.IntegerField()
+
+
 
