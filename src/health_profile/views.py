@@ -91,3 +91,69 @@ class delete_health_profile(View):
         health_profile = get_object_or_404(HealthProfile, id=health_profile_id, user=request.user)
         health_profile.delete()
         return redirect('health_profile_list')
+
+
+@method_decorator(login_required, name='dispatch')
+class health_profile_analysis(View):
+    def get(self, request):
+        # 获取当前用户的最新有身高记录的健康记录
+        height_profile = HealthProfile.objects.filter(user=request.user).exclude(height__isnull=True).order_by('-timestamp').first()
+        # 获取当前用户的最新有体重记录的健康记录
+        weight_profile = HealthProfile.objects.filter(user=request.user).exclude(weight__isnull=True).order_by('-timestamp').first()
+
+        # 初始化分析结果
+        analysis_results = []
+
+        if height_profile and weight_profile:
+            # 提取最新有身高记录的身高和最新有体重记录的体重
+            height = height_profile.height  # 身高 (单位: cm)
+            weight = weight_profile.weight  # 体重 (单位: kg)
+
+            # 判断身高和体重是否有效
+            if height and weight:
+                # 计算 BMI
+                height_m = height / 100  # 转换为米
+                bmi = weight / (height_m ** 2)
+                bmi = round(bmi, 2)
+
+                # 根据 BMI 设置进度条宽度和颜色
+                if bmi < 18.5:
+                    bmi_width = 40  # 偏瘦，宽度较小
+                    bmi_color = 'danger'  # 红色，极度不正常
+                elif 18.5 <= bmi < 24:
+                    bmi_width = (bmi - 18.5) * 100 / 5  # 18.5到24之间，逐渐增长
+                    bmi_color = 'success'  # 绿色，正常
+                elif 24 <= bmi < 30:
+                    bmi_width = (bmi - 24) * 100 / 6 + 50  # 超重，较高宽度
+                    bmi_color = 'warning'  # 黄色，偏高
+                else:
+                    bmi_width = 100  # 肥胖，最大宽度
+                    bmi_color = 'danger'  # 红色，极度不正常
+
+                # 添加分析结果
+                analysis_results.append({
+                    'bmi': bmi,
+                    'bmi_width': bmi_width,
+                    'bmi_color': bmi_color,
+                    'profile': height_profile  # 这里使用身高记录的健康记录
+                })
+            else:
+                # 如果身高或体重为空
+                analysis_results.append({
+                    'bmi': None,
+                    'bmi_width': 0,
+                    'bmi_color': 'gray',  # 无数据时为灰色
+                    'profile': height_profile
+                })
+        else:
+            # 如果没有身高或体重记录
+            analysis_results.append({
+                'bmi': None,
+                'bmi_width': 0,
+                'bmi_color': 'gray',  # 无数据时为灰色
+                'profile': None
+            })
+
+        return render(request, 'health_profile/health_profile_analysis.html', {
+            'analysis_results': analysis_results
+        })
