@@ -73,7 +73,7 @@ def delete_exercise_record(request, exerciseid):
 # 返回所有运动目标
 def exercise_goal_list(request):
     goals = ExerciseGoal.objects.all()
-    return render(request, 'exercise_goal_list.html', {'goals': goals})
+    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals})
 
 # 增加运动目标
 def add_exercise_goal(request):
@@ -91,3 +91,26 @@ def add_exercise_goal(request):
     else:
         form = ExerciseRecordForm()
     return render(request, 'exercise_info/add_exercise_goal.html', {'form': form})
+
+# 修改运动目标
+def exercise_goal_update(request, exerciseGoal_id):
+    goal = get_object_or_404(ExerciseGoal, exerciseGoal_id=exerciseGoal_id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = ExerciseGoalForm(request.POST, instance=goal)
+        if form.is_valid():
+            form.save()
+            ExerciseGoal.user_id = current_user.id
+            return redirect('exercise_info/exercise_goal_list')
+    else:
+        form = ExerciseGoalForm(instance=goal)
+    return render(request, 'exercise_info/exercise_goal_list.html', {'form': form})
+
+# 删除运动目标
+def exercise_goal_delete(request, exerciseGoal_id):
+    goal = get_object_or_404(ExerciseGoal, exerciseGoal_id=exerciseGoal_id)
+    # current_user = request.user
+    if request.method == 'POST':
+        goal.delete()
+        return redirect('exercise_goal_list')
+    return render(request, 'exercise_info/exercise_goal_list.html', {'goal': goal})

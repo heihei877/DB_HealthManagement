@@ -1,0 +1,450 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Exercise Goals List</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Exercise Goals List</h1>#}
+{#    <a href="{% url 'exercise_goals:create' %}">Add New Exercise Goal</a>#}
+{#    <ul>#}
+{#        {% for goal in goals %}#}
+{#        <li>#}
+{#            <strong>{{ goal.type }}:</strong> {{ goal.start_time }} - {{ goal.end_time }} ({{ goal.target_calorie_cost }} calories)#}
+{#            <br>#}
+{#            <a href="{% url 'exercise_goals:detail' exerciseGoal_id=goal.exerciseGoal_id %}">View</a>#}
+{#            <a href="{% url 'exercise_goals:update' exerciseGoal_id=goal.exerciseGoal_id %}">Edit</a>#}
+{#            <a href="{% url 'exercise_goals:delete' exerciseGoal_id=goal.exerciseGoal_id %}">Delete</a>#}
+{#        </li>#}
+{#        {% empty %}#}
+{#        <li>No exercise goals found.</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Nifty - Admin Template</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/static/nifty/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/static/nifty/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/static/nifty/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/static/nifty/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+
+    <!--DataTables [ OPTIONAL ]-->
+    <link href="/static/nifty/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/static/nifty/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/static/nifty/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/static/nifty/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/static/nifty/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/static/nifty/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/static/nifty/js/nifty.min.js"></script>
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="/static/nifty/js/demo/nifty-demo.min.js"></script>
+
+
+    <!--DataTables [ OPTIONAL ]-->
+    <script src="/static/nifty/plugins/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/static/nifty/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script src="/static/nifty/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+
+
+    <!--DataTables Sample [ SAMPLE ]-->
+    <script src="/static/nifty/js/demo/tables-datatables.js"></script>
+
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+
+            <!--Brand logo & name-->
+            <!--================================-->
+            <div class="navbar-header">
+                <a href="" class="navbar-brand">
+                    <img src="/static/nifty/img/logo.png" alt="VigorLoop Logo" class="brand-icon">
+                    <div class="brand-title">
+                        <span class="brand-text">VigorLoop</span>
+                    </div>
+                </a>
+            </div>
+            <!--================================-->
+            <!--End brand logo & name-->
+
+
+            <!--Navbar Dropdown-->
+            <!--================================-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+
+                    <!--Navigation toogle button-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="demo-pli-view-list"></i>
+                        </a>
+                    </li>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End Navigation toogle button-->
+
+
+                </ul>
+                <ul class="nav navbar-top-links pull-right">
+
+                    <!--User dropdown-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li id="dropdown-user" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                <span class="pull-right">
+                                    <!--<img class="img-circle img-user media-object" src="/static/nifty/img/profile-photos/1.png" alt="Profile Picture">-->
+                                    <i class="demo-pli-male ic-user"></i>
+                                </span>
+                            <div class="username hidden-xs">
+                                {% if user.is_authenticated %}{{ user.username }}{% else %}未登录用户{% endif %}</div>
+                        </a>
+
+
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+
+                            <!-- Dropdown heading  -->
+                            <div class="pad-all bord-btm">
+                                欢迎使用 VigorLoop！
+                            </div>
+
+
+                            <!-- User dropdown menu -->
+                            <ul class="head-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="demo-pli-male icon-lg icon-fw"></i> 个人中心
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Dropdown footer -->
+                            <div class="pad-all text-right">
+                                <a href="/logout/" class="btn btn-primary">
+                                    <i class="demo-pli-unlock"></i> 退出
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End user dropdown-->
+                </ul>
+            </div>
+            <!--================================-->
+            <!--End Navbar Dropdown-->
+
+        </div>
+    </header>
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <div id="page-title">
+                    <h1 class="text-lg-center">目标定，动力生</h1>
+                </div>
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">运动目标一览</h3>
+                            </div>
+
+                            <!--Bordered Table-->
+                            <!--===================================================-->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">运动目标序号</th>
+                                            <th class="text-center">目标类型</th>
+                                            <th class="text-center">开始时间</th>
+                                            <th class="text-center">截止时间</th>
+                                            <th class="text-center">目标消耗卡路里</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for goal in goals %}
+                                            <tr>
+                                                <td class="text-center">{{ goal.exercise_goal_id }}</td>
+                                                <td class="text-center">{{ goal.type }}</td>
+                                                <td class="text-center"><span class="text-muted"><i
+                                                        class="fa fa-clock-o"></i> {{ goal.start_time|date:"Y-m-d H:i:s" }}</span>
+                                                </td>
+                                                <td class="text-center"><span class="text-muted"><i
+                                                        class="fa fa-clock-o"></i> {{ goal.end_time|date:"Y-m-d H:i:s" }}</span>
+                                                </td>
+                                                <td class="text-center">{{ goal.target_calorie_cost }}大卡</td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="7">没有找到记录。</td>
+                                            </tr>
+                                        {% endfor %}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">1</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Scott S. Calabrese</a></td>#}
+                                        {#                                            <td><span class="label label-purple">Bussines</span></td>#}
+                                        {#                                        </tr>#}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">2</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Teresa L. Doe</a></td>#}
+                                        {#                                            <td><span class="label label-info">Personal</span></td>#}
+                                        {#                                        </tr>#}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">3</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Steve N. Horton</a></td>#}
+                                        {#                                            <td><span class="label label-warning">Trial</span></td>#}
+                                        {#                                        </tr>#}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">4</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Charles S Boyle</a></td>#}
+                                        {#                                            <td><span class="label label-purple">Bussines</span></td>#}
+                                        {#                                        </tr>#}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">5</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Lucy Doe</a></td>#}
+                                        {#                                            <td><span class="label label-warning">Trial</span></td>#}
+                                        {#                                        </tr>#}
+                                        {#                                        <tr>#}
+                                        {#                                            <td class="text-center">6</td>#}
+                                        {#                                            <td><a href="#" class="btn-link">Michael Bunr</a></td>#}
+                                        {#                                            <td><span class="label label-info">Personal</span></td>#}
+                                        {#                                        </tr>#}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--===================================================-->
+                            <!--End Bordered Table-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+
+
+        </div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+
+
+        <!--MAIN NAVIGATION-->
+        <!--===================================================-->
+        <nav id="mainnav-container">
+            <div id="mainnav">
+
+                <!--Menu-->
+                <!--================================-->
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content">
+
+                            <!--Profile Widget-->
+                            <!--================================-->
+                            <div id="mainnav-profile" class="mainnav-profile">
+                                <div class="profile-wrap">
+                                    <div class="pad-btm">
+                                        <img class="img-circle img-sm img-border"
+                                             src="/static/nifty/img/profile-photos/1.png" alt="Profile Picture">
+                                    </div>
+                                    <a href="#profile-nav" class="box-block" data-toggle="collapse"
+                                       aria-expanded="false">
+                                        <p class="mnp-name">
+                                            {% if user.is_authenticated %}{{ user.username }}{% else %}
+                                                未登录用户{% endif %}</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="mainnav-menu" class="list-group">
+
+                                <!--Category name-->
+                                <li class="list-header">健康中心</li>
+
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="/index/">
+                                        <i class="demo-psi-home"></i>
+                                        <span class="menu-title">
+												<strong>首页</strong>
+											</span>
+                                    </a>
+                                </li>
+
+                                <!--Menu list item-->
+                                <li class="active-sub active">
+                                    <a href="#">
+                                        <i class="demo-psi-boot-2"></i>
+                                        <span class="menu-title">
+												<strong>我的运动数据</strong>
+											</span>
+                                        <i class="arrow"></i>
+                                    </a>
+
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li class="active-link"><a
+                                                href="/exercise_info/exercise_record/">查看运动数据</a></li>
+                                        <li><a href="/exercise_info/add_exercise_record/">新增运动数据</a></li>
+                                    </ul>
+                                </li>
+
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="/health_profile/">
+                                        <i class="demo-psi-receipt-4"></i>
+                                        <span class="menu-title">
+												<strong>我的健康数据</strong>
+											</span>
+                                        <i class="arrow"></i>
+                                    </a>
+
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li><a href="/health_profile/">查看健康数据</a></li>
+                                        <li><a href="/health_profile/add/">新增健康数据</a></li>
+                                        <li><a href="/health_profile/analysis">健康分析</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="list-divider"></li>
+
+                                <!--Category name-->
+                                <li class="list-header">其他</li>
+
+                                <!--Menu list item-->
+                                <li>
+                                    <a href="TODO:个人中心">
+                                        <i class="demo-psi-male"></i>
+                                        <span class="menu-title">
+												<strong>个人中心</strong>
+											</span>
+                                    </a>
+                                </li>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--================================-->
+                <!--End menu-->
+
+            </div>
+        </nav>
+        <!--===================================================-->
+        <!--END MAIN NAVIGATION-->
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    <footer id="footer">
+
+        <!-- Visible when footer positions are fixed -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="show-fixed pull-left">
+            You have <a href="#" class="text-bold text-main"><span class="label label-danger">3</span> pending
+            action.</a>
+        </div>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <p class="pad-lft">&#0169; 2024 VigorLoop</p>
+
+
+    </footer>
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+</div>
+</body>
+
+</html>
