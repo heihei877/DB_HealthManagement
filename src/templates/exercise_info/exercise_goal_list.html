@@ -218,11 +218,17 @@
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">运动目标一览</h3>
+
                             </div>
 
                             <!--Bordered Table-->
                             <!--===================================================-->
                             <div class="panel-body">
+                                <p class="panel-info"> 共设定{{total_count}}项目标，
+                                    其中{{ complete_count }}项已完成，
+                                    {{doing_count }}项正在进行中，
+                                    {{ uncomplete_count }}项截止前未完成
+                                </p>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead>
