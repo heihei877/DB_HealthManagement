@@ -63,14 +63,6 @@ class health_profile_list(View):
             {'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'), 'blood_sugar': float(profile.blood_sugar)}
             for profile in health_profiles if profile.blood_sugar is not None]
 
-        systolic_bp_data = [
-            {'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'), 'systolic_bp': float(profile.systolic_bp)}
-            for profile in health_profiles if profile.systolic_bp is not None]
-
-        diastolic_bp_data = [
-            {'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'), 'diastolic_bp': float(profile.diastolic_bp)}
-            for profile in health_profiles if profile.diastolic_bp is not None]
-
         systolic_diastolic_bp_data = [
             {
                 'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'),

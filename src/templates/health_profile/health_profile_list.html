@@ -219,10 +219,6 @@
                         return [new Date(item.date).getTime(), item.diastolic_bp];
                     });
 
-                    // 调试：检查数据是否正确
-                    console.log("收缩压数据:", systolicData);
-                    console.log("舒张压数据:", diastolicData);
-
                     // 体重图表（Morris.js）
                     new Morris.Line({
                         element: 'morris-weight',
@@ -237,7 +233,8 @@
                         pointSize: 5,
                         gridLineColor: '#ddd',
                         xLabelAngle: 45,
-                        resize: true
+                        resize: true,
+                        hideHover: 'auto'
                     });
 
                     // 身高图表（Morris.js）
@@ -254,7 +251,8 @@
                         pointSize: 5,
                         gridLineColor: '#ddd',
                         xLabelAngle: 45,
-                        resize: true
+                        resize: true,
+                        hideHover: 'auto'
                     });
 
                     // 血糖图表（Morris.js）
@@ -271,7 +269,8 @@
                         pointSize: 5,
                         gridLineColor: '#ddd',
                         xLabelAngle: 45,
-                        resize: true
+                        resize: true,
+                        hideHover: 'auto'
                     });
 
                     $(function () {
@@ -322,11 +321,9 @@
                             xaxis: {
                                 mode: "time",
                                 timeformat: "%Y-%m",  // 这里将日期格式修改为年月 (yyyy-mm)
-                                // 设置最小的刻度间隔
-                                minTickSize: [1, "day"],  // 每月为最小刻度
+                                minTickSize: [1, "hour"],  // 每小时为最小刻度
                                 tickDecimals: 0,
                                 autoscaleMargin: 0.1,
-                                // tickFormatter 修改为只显示年月
                                 tickFormatter: function (val, axis) {
                                     var date = new Date(val);
                                     var options = {year: 'numeric', month: '2-digit'};  // 格式化为 yyyy-mm
@@ -346,21 +343,36 @@
                                 position: 'nw',
                                 margin: [15, 0]
                             },
-                            tooltip: true,
-                            tooltipOpts: {
-                                content: "%s on %x: %y mmHg",
-                                xDateFormat: "%Y-%m-%d %H:%M",  // 显示 tooltip 时使用完整的时间格式
-                                shifts: {
-                                    x: -60,
-                                    y: 25
-                                }
-                            }
                         };
 
                         // 绘制图表
                         $.plot("#flot-bloodpressure", allSeries, options);
                     });
 
+                    // Flot tooltip
+                    // =================================================================
+                    $("<div id='flot-tooltip'></div>").css({
+                        position: "absolute",
+                        display: "none",
+                        padding: "10px",
+                        color: "#fff",
+                        "text-align":"right",
+                        "background-color": "#37474f",
+                    }).appendTo("body");
+
+
+                    $("#flot-bloodpressure").bind("plothover", function (event, pos, item) {
+
+                        if (item) {
+                            var x = item.datapoint[0].toFixed(2),  y = item.datapoint[1];
+                            $("#flot-tooltip").html("<p class='morris-hover-row-label' >" + item.series.label + "</p>" + y)
+                                .css({top: item.pageY+5, left: item.pageX+5})
+                                .fadeIn(200);
+                        } else {
+                            $("#flot-tooltip").hide();
+                        }
+
+                    });
                 </script>
 
                 <!--===================================================-->
