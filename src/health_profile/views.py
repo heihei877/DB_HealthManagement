@@ -1,32 +1,45 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.http import JsonResponse
+from django.views import View
+from .models import HealthProfile
 from django.contrib.auth.decorators import login_required
-from .forms import HealthProfileForm, UserCustomFieldForm
-from .models import HealthProfile, UserCustomField
+from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+class add_health_profile(View):
+    def get(self, request):
+        return render(request, 'health_profile/add_health_profile.html')
 
-@login_required
-def create_health_profile(request):
-    if request.method == 'POST':
-        health_form = HealthProfileForm(request.POST)
-        custom_form = UserCustomFieldForm(request.POST)
+    def post(self, request):
+        # 获取POST数据
+        height = request.POST.get('height', None)
+        weight = request.POST.get('weight', None)
+        systolic_bp = request.POST.get('systolic_bp', None)
+        diastolic_bp = request.POST.get('diastolic_bp', None)
+        blood_sugar = request.POST.get('blood_sugar', None)
 
-        if health_form.is_valid() and custom_form.is_valid():
-            # 创建健康记录
-            health_profile = health_form.save(commit=False)
-            health_profile.user = request.user  # 关联到当前登录的用户
+        # 检查是否有有效的数据
+        if not any([height, weight, systolic_bp, diastolic_bp, blood_sugar]):
+            messages.error(request, "请至少填写一个字段！")
+            return redirect('add_health_profile')
+
+        # 创建健康记录对象并填充字段
+        health_profile = HealthProfile(
+            user=request.user,
+            height=height if height else None,
+            weight=weight if weight else None,
+            systolic_bp=systolic_bp if systolic_bp else None,
+            diastolic_bp=diastolic_bp if diastolic_bp else None,
+            blood_sugar=blood_sugar if blood_sugar else None
+        )
+
+        try:
+            # 保存记录
             health_profile.save()
-
-            # 创建自定义字段
-            custom_field = custom_form.save(commit=False)
-            custom_field.health_profile = health_profile  # 关联到刚创建的健康记录
-            custom_field.save()
-
-            return redirect('health_profile_list')  # 重定向到健康记录列表页面
-    else:
-        health_form = HealthProfileForm()
-        custom_form = UserCustomFieldForm()
-
-    return render(request, 'health_profile/add_health_profile.html', {
-        'health_form': health_form,
-        'custom_form': custom_form
-    })
+            messages.success(request, "健康记录已成功添加！")
+            # 重定向到健康记录列表页面
+            return redirect('health_profile_list')
+        except Exception as e:
+            messages.error(request, f"添加健康记录失败: {str(e)}")
+            return redirect('add_health_profile')
