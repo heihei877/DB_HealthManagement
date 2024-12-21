@@ -81,7 +81,11 @@ def exercise_goal_list(request):
     # return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals})
     goals = ExerciseGoal.objects.all()
     goals_with_progress = []
+    total_cnt = 0
+    complete_cnt = 0
+    uncomplete_cnt = 0
     for goal in goals:
+        total_cnt = total_cnt + 1
         records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
         total_calories = sum(record.calorie_cost for record in records)
         progress = (total_calories / goal.target_calorie_cost) * 100 if goal.target_calorie_cost else 0
@@ -94,6 +98,9 @@ def exercise_goal_list(request):
             timeout = 1
         else:
             timeout = 0
+        uncomplete_cnt = uncomplete_cnt + timeout
+        if progress >= 100:
+            complete_cnt = complete_cnt + 1
 
         print(timeout)
         goals_with_progress.append({
@@ -102,10 +109,8 @@ def exercise_goal_list(request):
             'is_completed': progress >= 100,
             'timeout': timeout
         })
-
-        print(timenow)
-        print(goal.end_time)
-    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals_with_progress})
+    doing_cnt = total_cnt - uncomplete_cnt-complete_cnt;
+    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals_with_progress,'total_count': total_cnt, 'complete_count': complete_cnt, 'uncomplete_count': uncomplete_cnt, 'doing_count': doing_cnt})
 
 # 增加运动目标
 def add_exercise_goal(request):
