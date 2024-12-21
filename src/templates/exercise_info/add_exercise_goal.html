@@ -227,7 +227,7 @@
             <!--Page Title-->
             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
             <div id="page-title">
-                <h1 class="text-lg-center">新增您的运动记录</h1>
+                <h1 class="text-lg-center">新增您的运动目标</h1>
             </div>
             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
             <!--End page title-->
@@ -237,7 +237,7 @@
             <div class="col-lg-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">新增您的运动数据</h3>
+                        <h3 class="panel-title">新增您的运动目标</h3>
                     </div>
                     <!-- BASIC FORM ELEMENTS -->
                     <!--===================================================-->
@@ -246,10 +246,10 @@
 
                         <!-- 运动类型 -->
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="type">运动类型:</label>
+                            <label class="col-md-3 control-label" for="type">目标运动类型:</label>
                             <div class="col-md-8">
                                 <select name="type" id="type" class="form-control" required>
-                                    <option value="">请选择运动类型</option>
+                                    <option value="">请选择目标运动类型</option>
                                     <option value="跑步">跑步</option>
                                     <option value="散步">散步</option>
                                     <option value="游泳">游泳</option>
@@ -267,27 +267,26 @@
                             </div>
                         </div>
 
-                        <!-- 结束时间 -->
+                        <!-- 截止时间 -->
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="end_time">结束时间:</label>
+                            <label class="col-md-3 control-label" for="end_time">截止时间:</label>
                             <div class="col-md-8">
-                                <input type="datetime-local" name="end_time" id="end_time" class="form-control"
-                                       required>
+                                <input type="datetime-local" name="end_time" id="end_time" class="form-control" required>
                             </div>
                         </div>
 
                         <!-- 消耗卡路里 -->
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="calorie_cost">消耗卡路里:</label>
+                            <label class="col-md-3 control-label" for="target_calorie_cost">消耗卡路里:</label>
                             <div class="col-md-8">
-                                <input type="number" name="calorie_cost" id="calorie_cost" class="form-control"
-                                       placeholder="请输入消耗的卡路里">
+                                <input type="number" name="target_calorie_cost" id="target_calorie_cost" class="form-control"
+                                       placeholder="请输入目标消耗卡路里">
                             </div>
                         </div>
 
                         <!-- 提交按钮 -->
                         <div class="panel-footer text-center">
-                            <button class="btn btn-success" type="submit">提交运动记录</button>
+                            <button class="btn btn-success" type="submit">提交运动目标</button>
                         </div>
                     </form>
                     <!--===================================================-->
@@ -346,7 +345,7 @@
                             </li>
 
                             <!--Menu list item-->
-                            <li class="active-sub active">
+                            <li>
                                 <a href="#">
                                     <i class="demo-psi-boot-2"></i>
                                     <span class="menu-title">
@@ -358,12 +357,11 @@
                                 <!--Submenu-->
                                 <ul class="collapse">
                                     <li><a href="/exercise_info/exercise_record/">查看运动数据</a></li>
-                                    <li class="active-link"><a
-                                            href="/exercise_info/add_exercise_record/">新增运动数据</a></li>
+                                    <li><a href="/exercise_info/add_exercise_record/">新增运动数据</a></li>
                                 </ul>
                             </li>
 
-                            <li>
+                            <li class="active-sub active" >
                                     <a href="#">
                                         <i class="demo-psi-star"></i>
                                         <span class="menu-title">
@@ -375,7 +373,7 @@
                                     <!--Submenu-->
                                     <ul class="collapse">
                                         <li><a href="/exercise_info/exercise_goal/">查看运动目标</a></li>
-                                        <li><a href="/exercise_info/add_exercise_goal/">新增运动目标</a></li>
+                                        <li class="active-link" ><a href="/exercise_info/add_exercise_goal/">新增运动目标</a></li>
                                     </ul>
                                 </li>
 

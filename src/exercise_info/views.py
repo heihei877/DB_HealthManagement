@@ -79,7 +79,7 @@ def exercise_goal_list(request):
     for goal in goals:
         records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
         total_calories = sum(record.calories for record in records)
-        progress = (total_calories / goal.target_calories) * 100 if goal.target_calories else 0
+        progress = (total_calories / goal.target_calorie_cost) * 100 if goal.target_calorie_cost else 0
         goals_with_progress.append({
             'goal': goal,
             'progress': progress,
@@ -94,7 +94,7 @@ def add_exercise_goal(request):
         form = ExerciseGoalForm(request.POST)
         if form.is_valid():
             goal = form.save(commit=False)
-            ExerciseGoal.user_id = current_user.id
+            goal.user_id = current_user.id
             goal.save()
             return redirect('exercise_goal_list')
         else:
