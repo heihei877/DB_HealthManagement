@@ -78,7 +78,7 @@ def exercise_goal_list(request):
     goals_with_progress = []
     for goal in goals:
         records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
-        total_calories = sum(record.calories for record in records)
+        total_calories = sum(record.calorie_cost for record in records)
         progress = (total_calories / goal.target_calorie_cost) * 100 if goal.target_calorie_cost else 0
         goals_with_progress.append({
             'goal': goal,
