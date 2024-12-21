@@ -252,12 +252,13 @@
                                                         <span class="badge badge-success">100%</span>
                                                     {% else %}
                                                         {% if goal_data.timeout != 0 %}
-                                                            <span class="badge badge-fw">{{ goal_data.progress|floatformat:2 }}%</span>
-                                                            <span class="text-muted"><i
+                                                            <span class="badge badge-icon">{{ goal_data.progress|floatformat:2 }}%</span>
                                                         {% else %}
                                                             {% if goal_data.progress > 75 %}
                                                                 <span class="badge badge-info">{{ goal_data.progress|floatformat:2 }}%</span>
-                                                            {% elif goal_data.progress > 40 %}
+                                                            {% elif goal_data.progress > 50 %}
+                                                                <span class="badge badge-mint">{{ goal_data.progress|floatformat:2 }}%</span>
+                                                            {% elif goal_data.progress > 30 %}
                                                                 <span class="badge badge-warning">{{ goal_data.progress|floatformat:2 }}%</span>
                                                             {% else %}
                                                                 <span class="badge badge-danger">{{ goal_data.progress|floatformat:2 }}%</span>
