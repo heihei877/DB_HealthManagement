@@ -25,6 +25,11 @@ class add_health_profile(View):
             messages.error(request, "请至少填写一个字段！")
             return redirect('add_health_profile')
 
+        # 检查血压字段的完整性
+        if (systolic_bp and not diastolic_bp) or (diastolic_bp and not systolic_bp):
+            messages.error(request, "请同时填写血压的高压和低压值！")
+            return redirect('add_health_profile')
+
         # 创建健康记录对象并填充字段
         health_profile = HealthProfile(
             user=request.user,
@@ -39,8 +44,7 @@ class add_health_profile(View):
             # 保存记录
             health_profile.save()
             messages.success(request, "健康记录已成功添加！")
-            # 重定向到健康记录列表页面
-            return redirect('health_profile_list')
+            return redirect('add_health_profile')
         except Exception as e:
             messages.error(request, f"添加健康记录失败: {str(e)}")
             return redirect('add_health_profile')
