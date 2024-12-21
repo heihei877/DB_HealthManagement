@@ -71,12 +71,20 @@ class health_profile_list(View):
             {'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'), 'diastolic_bp': float(profile.diastolic_bp)}
             for profile in health_profiles if profile.diastolic_bp is not None]
 
+        systolic_diastolic_bp_data = [
+            {
+                'date': profile.timestamp.strftime('%Y-%m-%d %H:%M'),
+                'systolic_bp': float(profile.systolic_bp),
+                'diastolic_bp': float(profile.diastolic_bp)
+            }
+            for profile in health_profiles if profile.systolic_bp is not None and profile.diastolic_bp is not None
+        ]
+
         # 将数据传递到模板
         return render(request, 'health_profile/health_profile_list.html', {
             'health_profiles': health_profiles,
             'weight_data': json.dumps(weight_data),
             'height_data': json.dumps(height_data),
             'blood_sugar_data': json.dumps(blood_sugar_data),
-            'systolic_bp_data': json.dumps(systolic_bp_data),
-            'diastolic_bp_data': json.dumps(diastolic_bp_data),
+            'systolic_diastolic_bp_data': json.dumps(systolic_diastolic_bp_data),
         })

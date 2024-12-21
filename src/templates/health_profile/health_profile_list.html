@@ -42,6 +42,7 @@
 		<!--Flot Chart [ OPTIONAL ]-->
 		<script src="/static/nifty/plugins/flot-charts/jquery.flot.min.js"></script>
 		<script src="/static/nifty/plugins/flot-charts/jquery.flot.resize.min.js"></script>
+        <script src="/static/nifty/plugins/flot-charts/jquery.flot.time.js"></script>
 		<!--Flot Pie Chart [ OPTIONAL ]-->
 		<script src="/static/nifty/plugins/flot-charts/jquery.flot.pie.min.js"></script>
 		<!--Gauge js [ OPTIONAL ]-->
@@ -137,6 +138,7 @@
 					<!--Page content-->
 					<!--===================================================-->
 					<div id="page-content">
+                        <h4 class="text-main pad-btm bord-btm">我的基本信息 </h4>
 						<div class="row">
 							<div class="eq-height">
 								<div class="col-md-12 col-lg-4 eq-box-lg">
@@ -185,133 +187,180 @@
 								</div>
 							</div>
 						</div>
-
+                        
+                        <h4 class="text-main pad-btm bord-btm">血压变化趋势 </h4>
 						<div class="row">
 							<div class="eq-height">
-								<div class="col-md-12 col-lg-4 eq-box-lg">
-									<!-- 血压（高压）图表 -->
-									<div class="col-lg-6">
-										<div class="panel">
-											<div class="panel-heading">
-												<h3 class="panel-title">血压高压</h3>
-											</div>
-											<div class="panel-body">
-												<div id="morris-systolic-bp"
-													 style="height:212px"></div>
-											</div>
-										</div>
-									</div>
-
-									<!-- 血压（低压）图表 -->
-									<div class="col-lg-6">
-										<div class="panel">
-											<div class="panel-heading">
-												<h3 class="panel-title">血压低压</h3>
-											</div>
-											<div class="panel-body">
-												<div id="morris-diastolic-bp"
-													 style="height:212px"></div>
-											</div>
-										</div>
-									</div>
-								</div>
+								<div class="panel">
+					            <div class="panel-heading">
+					                <h3 class="panel-title">foo</h3>
+					            </div>
+					            <div class="panel-body">
+					                <div id="flot-bloodpressure" style="height:50vh"></div>
+					            </div>
+					        </div>
 							</div>
 						</div>
 
 						<script>
-							// 从 Django 模板中传递过来的数据
-							                            var weightData = {{ weight_data|safe }};
-							                            var heightData = {{ height_data|safe }};
-							                            var bloodSugarData = {{ blood_sugar_data|safe }};
-							                            var systolicBpData = {{ systolic_bp_data|safe }};
-							                            var diastolicBpData = {{ diastolic_bp_data|safe }};
-							        
-							                            // 体重图表
-							                            new Morris.Line({
-							                                element: 'morris-weight',
-							                                data: weightData,
-							                                xkey: 'date',
-							                                ykeys: ['weight'],
-							                                labels: ['体重'],
-							                                dateFormat: function(x) {
-							                                  console.log(x);
-							                                  return new Date(x).toLocaleString(); // 精确到分钟
-							                                },
-							                                lineColors: ['#0b62a4'],
-							                                pointSize: 5,
-							                                gridLineColor: '#ddd',
-							                                xLabelAngle: 45,
-							                                  resize: true
-							                            });
-							                            
-							                            // 身高图表
-							                            new Morris.Line({
-							                                element: 'morris-height',
-							                                data: heightData,
-							                                xkey: 'date',
-							                                ykeys: ['height'],
-							                                labels: ['身高'],
-							                                dateFormat: function(x) {
-							                                  return new Date(x).toLocaleString(); // 精确到分钟
-							                                },
-							                                lineColors: ['#0b62a4'],
-							                                pointSize: 5,
-							                                gridLineColor: '#ddd',
-							                                xLabelAngle: 45,
-							                                  resize: true
-							                            });
-							                            
-							                            // 血糖图表
-							                            new Morris.Line({
-							                                element: 'morris-blood-sugar',
-							                                data: bloodSugarData,
-							                                xkey: 'date',
-							                                ykeys: ['blood_sugar'],
-							                                labels: ['血糖'],
-							                                dateFormat: function(x) {
-							                                  return new Date(x).toLocaleString(); // 精确到分钟
-							                                },
-							                                lineColors: ['#ff6347'],
-							                                pointSize: 5,
-							                                gridLineColor: '#ddd',
-							                                xLabelAngle: 45,
-							                                  resize: true
-							                            });
-							                            
-							                            // 血压高压图表
-							                            new Morris.Line({
-							                                element: 'morris-systolic-bp',
-							                                data: systolicBpData,
-							                                xkey: 'date',
-							                                ykeys: ['systolic_bp'],
-							                                labels: ['血压高压'],
-							                                dateFormat: function(x) {
-							                                  return new Date(x).toLocaleString(); // 精确到分钟
-							                                },
-							                                lineColors: ['#32cd32'],
-							                                pointSize: 5,
-							                                gridLineColor: '#ddd',
-							                                xLabelAngle: 45,
-							                                  resize: true
-							                            });
-							                            
-							                            // 血压低压图表
-							                            new Morris.Line({
-							                                element: 'morris-diastolic-bp',
-							                                data: diastolicBpData,
-							                                xkey: 'date',
-							                                ykeys: ['diastolic_bp'],
-							                                labels: ['血压低压'],
-							                                dateFormat: function(x) {
-							                                  return new Date(x).toLocaleString(); // 精确到分钟
-							                                },
-							                                lineColors: ['#ff8c00'],
-							                                pointSize: 5,
-							                                gridLineColor: '#ddd',
-							                                xLabelAngle: 45,
-							                                  resize: true
-							                            });
-						</script>
+                            // 从 Django 模板中传递过来的数据
+                            var weightData = {{ weight_data|safe }};
+                            var heightData = {{ height_data|safe }};
+                            var bloodSugarData = {{ blood_sugar_data|safe }};
+                            var systolicDiastolicBpData = {{ systolic_diastolic_bp_data|safe }};
+                            
+                            // 处理收缩压和舒张压数据
+                            var systolicData = systolicDiastolicBpData.map(function(item) {
+                                return [new Date(item.date).getTime(), item.systolic_bp];
+                            });
+                            var diastolicData = systolicDiastolicBpData.map(function(item) {
+                                return [new Date(item.date).getTime(), item.diastolic_bp];
+                            });
+                
+                            // 调试：检查数据是否正确
+                            console.log("收缩压数据:", systolicData);
+                            console.log("舒张压数据:", diastolicData);
+                
+                            // 体重图表（Morris.js）
+                            new Morris.Line({
+                                element: 'morris-weight',
+                                data: weightData,
+                                xkey: 'date',
+                                ykeys: ['weight'],
+                                labels: ['体重'],
+                                dateFormat: function(x) {
+                                    return new Date(x).toLocaleString(); // 精确到分钟
+                                },
+                                lineColors: ['#0b62a4'],
+                                pointSize: 5,
+                                gridLineColor: '#ddd',
+                                xLabelAngle: 45,
+                                resize: true
+                            });
+                        
+                            // 身高图表（Morris.js）
+                            new Morris.Line({
+                                element: 'morris-height',
+                                data: heightData,
+                                xkey: 'date',
+                                ykeys: ['height'],
+                                labels: ['身高'],
+                                dateFormat: function(x) {
+                                    return new Date(x).toLocaleString(); // 精确到分钟
+                                },
+                                lineColors: ['#0b62a4'],
+                                pointSize: 5,
+                                gridLineColor: '#ddd',
+                                xLabelAngle: 45,
+                                resize: true
+                            });
+                        
+                            // 血糖图表（Morris.js）
+                            new Morris.Line({
+                                element: 'morris-blood-sugar',
+                                data: bloodSugarData,
+                                xkey: 'date',
+                                ykeys: ['blood_sugar'],
+                                labels: ['血糖'],
+                                dateFormat: function(x) {
+                                    return new Date(x).toLocaleString(); // 精确到分钟
+                                },
+                                lineColors: ['#ff6347'],
+                                pointSize: 5,
+                                gridLineColor: '#ddd',
+                                xLabelAngle: 45,
+                                resize: true
+                            });
+                        
+                           $(function() {
+                            // 准备数据
+                            var systolicSeries = {
+                                label: "收缩压 (mmHg)",
+                                data: systolicData,
+                                lines: {
+                                    show: true,
+                                    lineWidth: 2,
+                                    fill: false
+                                },
+                                points: {
+                                    show: true,
+                                    radius: 3
+                                },
+                                color: "#FF0000" // 红色
+                            };
+                        
+                            var diastolicSeries = {
+                                label: "舒张压 (mmHg)",
+                                data: diastolicData,
+                                lines: {
+                                    show: true,
+                                    lineWidth: 2,
+                                    fill: false
+                                },
+                                points: {
+                                    show: true,
+                                    radius: 3
+                                },
+                                color: "#0000FF" // 蓝色
+                            };
+                        
+                            var allSeries = [systolicSeries, diastolicSeries];
+                        
+                            // 配置选项
+                            var options = {
+                                series: {
+                                    shadowSize: 0
+                                },
+                                grid: {
+                                    borderWidth: 1,
+                                    borderColor: "#eeeeee",
+                                    hoverable: true,
+                                    clickable: true
+                                },
+                                xaxis: {
+                                    mode: "time",
+                                    timeformat: "%Y-%m",  // 这里将日期格式修改为年月 (yyyy-mm)
+                                    // 设置最小的刻度间隔
+                                    minTickSize: [1, "day"],  // 每月为最小刻度
+                                    tickDecimals: 0,
+                                    autoscaleMargin: 0.1,
+                                    // tickFormatter 修改为只显示年月
+                                    tickFormatter: function (val, axis) {
+                                        var date = new Date(val);
+                                        var options = { year: 'numeric', month: '2-digit' };  // 格式化为 yyyy-mm
+                                        return date.toLocaleDateString('en', options);
+                                    }
+                                },
+                                yaxis: {
+                                    min: 0,
+                                    tickSize: 20,
+                                    tickColor: '#eeeeee',
+                                    tickFormatter: function (val, axis) {
+                                        return val + " mmHg";
+                                    }
+                                },
+                                legend: {
+                                    show: true,
+                                    position: 'nw',
+                                    margin: [15, 0]
+                                },
+                                tooltip: true,
+                                tooltipOpts: {
+                                    content: "%s on %x: %y mmHg",
+                                    xDateFormat: "%Y-%m-%d %H:%M",  // 显示 tooltip 时使用完整的时间格式
+                                    shifts: {
+                                        x: -60,
+                                        y: 25
+                                    }
+                                }
+                            };
+                        
+                            // 绘制图表
+                            $.plot("#flot-bloodpressure", allSeries, options);
+                        });
+
+                        </script>
+
 						<!--===================================================-->
 						<!--End page content-->
 					</div>
