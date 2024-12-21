@@ -101,7 +101,7 @@ def add_exercise_goal(request):
             print(form.errors)
             messages.error(request, "无效的运动目标！")
     else:
-        form = ExerciseRecordForm()
+        form = ExerciseGoalForm()
     return render(request, 'exercise_info/add_exercise_goal.html', {'form': form})
 
 # 修改运动目标
