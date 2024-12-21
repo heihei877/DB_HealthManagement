@@ -1,4 +1,6 @@
 from django.contrib import messages
+from datetime import datetime
+from django.utils import timezone
 
 from exercise_info import models
 
@@ -6,6 +8,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, render, redirect
 from .models import ExerciseRecord, ExerciseGoal
 from .forms import ExerciseRecordForm, ExerciseGoalForm
+
+import pytz
 
 
 # Create your views here.
@@ -81,11 +85,26 @@ def exercise_goal_list(request):
         records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
         total_calories = sum(record.calorie_cost for record in records)
         progress = (total_calories / goal.target_calorie_cost) * 100 if goal.target_calorie_cost else 0
+        timenow = timezone.now().astimezone(pytz.timezone('Asia/Shanghai'))
+        # 将时间格式化为字符串，并替换时区部分
+        now_str = timenow.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] + '+0000'
+        # 将字符串解析回datetime对象，注意这里的格式字符串需要与now_str的格式匹配
+        now_datetime = datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S.%f%z')
+        if now_datetime > goal.end_time:
+            timeout = 1
+        else:
+            timeout = 0
+
+        print(timeout)
         goals_with_progress.append({
             'goal': goal,
             'progress': progress,
-            'is_completed': progress >= 100
+            'is_completed': progress >= 100,
+            'timeout': timeout
         })
+
+        print(timenow)
+        print(goal.end_time)
     return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals_with_progress})
 
 # 增加运动目标
