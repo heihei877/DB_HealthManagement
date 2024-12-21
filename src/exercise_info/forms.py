@@ -13,7 +13,7 @@ class ExerciseRecordForm(forms.ModelForm):
 class ExerciseGoalForm(forms.ModelForm):
     class Meta:
         model = ExerciseGoal
-        fields = ['user', 'type', 'start_time', 'end_time', 'target_calorie_cost']
+        fields = ['type', 'start_time', 'end_time', 'target_calorie_cost']
 
         widgets = {
             'start_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
