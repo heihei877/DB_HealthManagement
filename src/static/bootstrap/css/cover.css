@@ -171,3 +171,12 @@ body {
   line-height: 1.5; /* 设置行高 */
   color: #fff; /* 设置字体颜色，与之前设置的阴影颜色相匹配 */
 }
+
+.logo {
+  display: inline-block; /* 使logo和文字在同一行显示 */
+  vertical-align: middle; /* 垂直居中对齐 */
+  margin-right: 10px; /* logo和文字之间的间距 */
+  height: auto; /* 高度自适应 */
+  width: 50px; /* 根据实际logo尺寸调整宽度 */
+}
+
