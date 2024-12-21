@@ -236,30 +236,31 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for goal in goals %}
+                                        {% for goal_data in goals %}
                                             <tr>
-                                                <td class="text-center">{{ goal.exercise_goal_id }}</td>
-                                                <td class="text-center">{{ goal.type }}</td>
+                                                <td class="text-center">{{ goal_data.goal.exercise_goal_id }}</td>
+                                                <td class="text-center">{{ goal_data.goal.type }}</td>
                                                 <td class="text-center"><span class="text-muted"><i
-                                                        class="fa fa-clock-o"></i> {{ goal.start_time|date:"Y-m-d H:i:s" }}</span>
+                                                        class="fa fa-clock-o"></i> {{ goal_data.goal.start_time|date:"Y-m-d H:i:s" }}</span>
                                                 </td>
                                                 <td class="text-center"><span class="text-muted"><i
-                                                        class="fa fa-clock-o"></i> {{ goal.end_time|date:"Y-m-d H:i:s" }}</span>
+                                                        class="fa fa-clock-o"></i> {{goal_data.goal.end_time|date:"Y-m-d H:i:s" }}</span>
                                                 </td>
-                                                <td class="text-center">{{ goal.target_calorie_cost }}大卡</td>
+                                                <td class="text-center">{{ goal_data.goal.target_calorie_cost }}大卡</td>
                                                 <td class="text-center">
-                                                    {% if goal.is_completed %}
+                                                    {% if goal_data.is_completed %}
                                                         <span class="badge badge-success">100%</span>
                                                     {% else %}
-                                                        <span class="badge badge-warning">{{ goal.progress|floatformat:2 }}%</span>
+                                                        <span class="badge badge-warning">{{ goal_data.progress|floatformat:2 }}%</span>
                                                     {% endif %}
                                                 </td>
                                             </tr>
                                         {% empty %}
                                             <tr>
-                                                <td colspan="7">没有找到记录。</td>
+                                                <td colspan="7">暂未制定目标。</td>
                                             </tr>
                                         {% endfor %}
+                                        </tbody>
                                         {#                                        <tr>#}
                                         {#                                            <td class="text-center">1</td>#}
                                         {#                                            <td><a href="#" class="btn-link">Scott S. Calabrese</a></td>#}
@@ -354,7 +355,7 @@
                                 </li>
 
                                 <!--Menu list item-->
-                                <li >
+                                <li>
                                     <a href="#">
                                         <i class="demo-psi-boot-2"></i>
                                         <span class="menu-title">
@@ -365,7 +366,7 @@
 
                                     <!--Submenu-->
                                     <ul class="collapse">
-                                        <li> <a href="/exercise_info/exercise_record/">查看运动数据</a></li>
+                                        <li><a href="/exercise_info/exercise_record/">查看运动数据</a></li>
                                         <li><a href="/exercise_info/add_exercise_record/">新增运动数据</a></li>
                                     </ul>
                                 </li>
@@ -381,7 +382,8 @@
 
                                     <!--Submenu-->
                                     <ul class="collapse">
-                                        <li class="active-link" ><a href="/exercise_info/exercise_goal/">查看运动目标</a></li>
+                                        <li class="active-link"><a href="/exercise_info/exercise_goal/">查看运动目标</a>
+                                        </li>
                                         <li><a href="/exercise_info/add_exercise_goal/">新增运动目标</a></li>
                                     </ul>
                                 </li>
