@@ -72,8 +72,20 @@ def delete_exercise_record(request, exerciseid):
 
 # 返回所有运动目标
 def exercise_goal_list(request):
+    # goals = ExerciseGoal.objects.all()
+    # return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals})
     goals = ExerciseGoal.objects.all()
-    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals})
+    goals_with_progress = []
+    for goal in goals:
+        records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
+        total_calories = sum(record.calories for record in records)
+        progress = (total_calories / goal.target_calories) * 100 if goal.target_calories else 0
+        goals_with_progress.append({
+            'goal': goal,
+            'progress': progress,
+            'is_completed': progress >= 100
+        })
+    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals_with_progress})
 
 # 增加运动目标
 def add_exercise_goal(request):
