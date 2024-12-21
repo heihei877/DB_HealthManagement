@@ -66,6 +66,7 @@ def add_exercise_record(request):
 
 # 删除运动记录
 def delete_exercise_record(request, exerciseid):
+    print("deleting!")
     exercise = get_object_or_404(ExerciseRecord, exercise_id=exerciseid)
     exercise.delete()
     return redirect('exercise_record_list')
