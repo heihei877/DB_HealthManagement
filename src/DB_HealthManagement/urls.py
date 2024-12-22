@@ -20,8 +20,9 @@ import DB_HealthManagement.views
 import accounts.views
 
 urlpatterns = [
-    path('',DB_HealthManagement.views.cover, name='cover'),
-    path('about/',DB_HealthManagement.views.about, name='about'),
+    path('', DB_HealthManagement.views.cover, name='cover'),
+    path('about/', DB_HealthManagement.views.about, name='about'),
+    path('contact_us/', DB_HealthManagement.views.contact_us, name='contact_us'),
     path('admin/', admin.site.urls),
     path('index/', DB_HealthManagement.views.index, name='index'),
     path('register/', accounts.views.Register.as_view(), name='register'),  # 注册页面

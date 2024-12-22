@@ -6,7 +6,10 @@ def cover(request):
     return render(request, 'cover.html')
 
 def about(request):
-    return render(request,'about.html')
+    return render(request, 'about.html')
+
+def contact_us(request):
+    return render(request, 'contact_us.html')
 
 @login_required
 def index(request):
