@@ -1,7 +1,7 @@
 
 
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
@@ -83,3 +83,36 @@ class reset_password(View):
                 for msg in form.error_messages:
                     messages.error(request, form.error_messages[msg][0])
                 return render(request, 'user_center/reset_password.html', {'form': form})
+
+UserModel = get_user_model()
+class EditUsername(View):
+    def get(self, request):
+        if not request.user.is_authenticated:
+            messages.info(request, "您尚未登录，无法修改用户名！")
+            return redirect('login')  # 假设有一个名为 'login' 的登录页面
+        return render(request, 'user_center/edit_username.html')
+
+    def post(self, request):
+        if not request.user.is_authenticated:
+            messages.info(request, "您尚未登录，无法修改用户名！")
+            return redirect('login')  # 假设有一个名为 'login' 的登录页面
+
+        new_username = request.POST.get('new_username', '')
+
+        # 检查新用户名是否为空
+        if not new_username:
+            messages.error(request, "用户名不能为空！")
+            return render(request, 'user_center/change_username.html')
+
+        # 检查新用户名是否已被占用
+        if UserModel.objects.filter(username=new_username).exists():
+            messages.error(request, "该用户名已被注册！")
+            return render(request, 'user_center/change_username.html')
+
+        # 更新用户名
+        request.user.username = new_username
+        request.user.save()
+        messages.success(request, "用户名修改成功！")
+        return redirect('user_center')  # 假设有一个名为 'index' 的主页
+
+
