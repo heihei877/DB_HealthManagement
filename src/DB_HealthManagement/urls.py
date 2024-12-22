@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 import DB_HealthManagement.views
 import accounts.views
+import user_center.views
 
 urlpatterns = [
     path('', DB_HealthManagement.views.cover, name='cover'),
@@ -31,7 +32,7 @@ urlpatterns = [
     path('logout/', accounts.views.user_logout, name='logout'),  # 注销页面
     path('health_profile/', include('health_profile.urls')),
     path('exercise_info/', include('exercise_info.urls')),
-
+    path('user_center/', user_center.views.get_user_info, name= 'user_center')
 ]
 
 
