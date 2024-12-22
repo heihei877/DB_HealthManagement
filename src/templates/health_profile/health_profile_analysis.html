@@ -140,7 +140,7 @@
     <div class="boxed">
         <!--CONTENT CONTAINER-->
         <!--===================================================-->
-        <div id="content-container">
+        <div id="content-container" style="height: 100vh">
             <!--Page Title-->
             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
             <div id="page-title">
@@ -148,20 +148,19 @@
             </div>
             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
             <!--End page title-->
-            <!--Page content-->
-            <!--===================================================-->
+            <!-- 页面内容 -->
             <div id="page-content">
                 <div class="row">
-                    {% for result in analysis_results %}
+                    <!-- BMI分析 -->
+                    {% for result in analysis_bmi_result %}
                     <div class="col-md-12 col-lg-12">
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">BMI 分析</h3>
                             </div>
                             <div class="panel-body">
-                                <!-- BMI 进度条 -->
                                 <div class="progress progress-xl">
-                                    <div class="progress-bar progress-bar-{{ result.bmi_color }}" style="width: {{ result.bmi_width }}%;">
+                                    <div class="progress-bar progress-bar-{{ result.bmi_color }}" style="width: {{ result.bmi_width }}%; transition: width 1s ease;">
                                         {% if result.bmi %}
                                         {{ result.bmi }} BMI
                                         {% else %}
@@ -169,7 +168,6 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                                <!-- BMI 说明 -->
                                 {% if result.bmi_color == 'success' %}
                                 <p>您的BMI值属于正常范围 (18.5 - 24)</p>
                                 {% elif result.bmi_color == 'warning' %}
@@ -184,7 +182,82 @@
                     </div>
                     {% endfor %}
                 </div>
+            
+                <div class="row">
+                    <!-- 血压分析 -->
+                    {% for result in analysis_bp_result %}
+                    <div class="col-md-12 col-lg-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">血压分析</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="progress progress-xl">
+                                    <div class="progress-bar progress-bar-{{ result.bp_color }}" style="width: {{ result.bp_width }}%; transition: width 1s ease;">
+                                        {% if result.systolic_bp %}
+                                        收缩压: {{ result.systolic_bp }} mmHg 舒张压: {{ result.diastolic_bp }} mmHg
+                                        {% else %}
+                                        无有效血压数据
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if result.bp_status == 'normal' %}
+                                <p>您的血压值正常。</p>
+                                {% elif result.bp_status == 'hypotension' %}
+                                <p>您的血压偏低。</p>
+                                {% elif result.bp_status == 'prehypertension' %}
+                                <p>您的血压偏高，建议咨询医生。</p>
+                                {% elif result.bp_status == 'hypertension_stage_1' %}
+                                <p>高血压第一阶段，建议咨询医生。</p>
+                                {% elif result.bp_status == 'hypertension_stage_2' %}
+                                <p>高血压第二阶段，建议立即咨询医生。</p>
+                                {% elif result.bp_status == 'hypertensive_crisis' %}
+                                <p>高血压危象，紧急情况，需立刻就医。</p>
+                                {% else %}
+                                <p>暂无血压数据</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            
+                <div class="row">
+                    <!-- 血糖分析 -->
+                    {% for result in analysis_bg_result %}
+                    <div class="col-md-12 col-lg-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">血糖分析</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="progress progress-xl">
+                                    <div class="progress-bar progress-bar-{{ result.glucose_color }}" style="width: {{ result.glucose_width }}%; transition: width 1s ease;">
+                                        {% if result.blood_glucose %}
+                                        {{ result.blood_glucose }} mmol/L
+                                        {% else %}
+                                        无有效血糖数据
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if result.glucose_status == 'normal' %}
+                                <p>您的血糖值处于正常范围 (3.9 - 5.6 mmol/L)</p>
+                                {% elif result.glucose_status == 'hypoglycemia' %}
+                                <p>您的血糖值过低，建议尽快就医。</p>
+                                {% elif result.glucose_status == 'prediabetes' %}
+                                <p>您的血糖值偏高，属于糖尿病前期，建议注意饮食。</p>
+                                {% elif result.glucose_status == 'diabetes' %}
+                                <p>您的血糖值偏高，可能是糖尿病，建议立即就医。</p>
+                                {% else %}
+                                <p>暂无血糖数据</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+
 
     <!--===================================================-->
     <!--END CONTENT CONTAINER-->
