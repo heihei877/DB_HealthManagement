@@ -75,6 +75,7 @@ def delete_exercise_record(request, exerciseid):
     exercise.delete()
     return redirect('exercise_record_list')
 
+
 # 返回所有运动目标
 def exercise_goal_list(request):
     # goals = ExerciseGoal.objects.all()
@@ -83,7 +84,7 @@ def exercise_goal_list(request):
     goals_with_progress = []
     total_cnt = 0
     complete_cnt = 0
-    uncomplete_cnt = 0
+    uncompleted_cnt = 0
     for goal in goals:
         total_cnt = total_cnt + 1
         records = ExerciseRecord.objects.filter(start_time__gte=goal.start_time, end_time__lte=goal.end_time)
@@ -94,13 +95,18 @@ def exercise_goal_list(request):
         now_str = timenow.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] + '+0000'
         # 将字符串解析回datetime对象，注意这里的格式字符串需要与now_str的格式匹配
         now_datetime = datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S.%f%z')
-        if now_datetime > goal.end_time:
-            timeout = 1
-        else:
-            timeout = 0
-        uncomplete_cnt = uncomplete_cnt + timeout
+        print(now_datetime)
+        print(goal.end_time)
+
         if progress >= 100:
             complete_cnt = complete_cnt + 1
+
+        else:
+            if now_datetime > goal.end_time:  # 截止
+                timeout = 1
+                uncompleted_cnt = uncompleted_cnt + 1
+            else:
+                timeout = 0
 
         print(timeout)
         goals_with_progress.append({
@@ -109,8 +115,11 @@ def exercise_goal_list(request):
             'is_completed': progress >= 100,
             'timeout': timeout
         })
-    doing_cnt = total_cnt - uncomplete_cnt-complete_cnt;
-    return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals_with_progress,'total_count': total_cnt, 'complete_count': complete_cnt, 'uncomplete_count': uncomplete_cnt, 'doing_count': doing_cnt})
+    doing_cnt = total_cnt - uncompleted_cnt - complete_cnt;
+    return render(request, 'exercise_info/exercise_goal_list.html',
+                  {'goals': goals_with_progress, 'total_count': total_cnt, 'complete_count': complete_cnt,
+                   'uncomplete_count': uncompleted_cnt, 'doing_count': doing_cnt})
+
 
 # 增加运动目标
 def add_exercise_goal(request):
@@ -129,6 +138,7 @@ def add_exercise_goal(request):
         form = ExerciseGoalForm()
     return render(request, 'exercise_info/add_exercise_goal.html', {'form': form})
 
+
 # 修改运动目标
 def exercise_goal_update(request, exerciseGoal_id):
     goal = get_object_or_404(ExerciseGoal, exerciseGoal_id=exerciseGoal_id)
@@ -142,6 +152,7 @@ def exercise_goal_update(request, exerciseGoal_id):
     else:
         form = ExerciseGoalForm(instance=goal)
     return render(request, 'exercise_info/exercise_goal_list.html', {'form': form})
+
 
 # 删除运动目标
 def exercise_goal_delete(request, exerciseGoal_id):
