@@ -7,4 +7,5 @@ urlpatterns = [
     path('delete_exercise_record/<int:exerciseid>/', views.delete_exercise_record, name='delete_exercise_record'),
     path('exercise_goal/', views.exercise_goal_list, name = 'exercise_goal_list'),
     path('add_exercise_goal/', views.add_exercise_goal, name = 'add_exercise_goal'),
+    path('delete_exercise_goal/<int:exerciseGoal_id>/', views.exercise_goal_delete, name='delete_exercise_goal'),
 ]

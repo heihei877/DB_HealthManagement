@@ -140,7 +140,7 @@ def exercise_goal_update(request, exerciseGoal_id):
 
 # 删除运动目标
 def exercise_goal_delete(request, exerciseGoal_id):
-    goal = get_object_or_404(ExerciseGoal, exerciseGoal_id=exerciseGoal_id)
+    goal = get_object_or_404(ExerciseGoal, exercise_goal_id=exerciseGoal_id)
     # current_user = request.user
     if request.method == 'POST':
         goal.delete()
