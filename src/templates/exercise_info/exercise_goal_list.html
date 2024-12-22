@@ -1,28 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Exercise Goals List</title>#}
-{#</head>#}
-{#<body>#}
-{#    <h1>Exercise Goals List</h1>#}
-{#    <a href="{% url 'exercise_goals:create' %}">Add New Exercise Goal</a>#}
-{#    <ul>#}
-{#        {% for goal in goals %}#}
-{#        <li>#}
-{#            <strong>{{ goal.type }}:</strong> {{ goal.start_time }} - {{ goal.end_time }} ({{ goal.target_calorie_cost }} calories)#}
-{#            <br>#}
-{#            <a href="{% url 'exercise_goals:detail' exerciseGoal_id=goal.exerciseGoal_id %}">View</a>#}
-{#            <a href="{% url 'exercise_goals:update' exerciseGoal_id=goal.exerciseGoal_id %}">Edit</a>#}
-{#            <a href="{% url 'exercise_goals:delete' exerciseGoal_id=goal.exerciseGoal_id %}">Delete</a>#}
-{#        </li>#}
-{#        {% empty %}#}
-{#        <li>No exercise goals found.</li>#}
-{#        {% endfor %}#}
-{#    </ul>#}
-{#</body>#}
-{#</html>#}
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -327,7 +302,7 @@
                                 </div>
                             </div>
 
-                            <div id="mainnav-menu" class="list-group">
+                            <ul id="mainnav-menu" class="list-group">
 
                                 <!--Category name-->
                                 <li class="list-header">健康中心</li>
@@ -409,7 +384,7 @@
                                     </a>
                                 </li>
 
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
