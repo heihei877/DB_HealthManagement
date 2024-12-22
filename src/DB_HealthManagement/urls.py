@@ -34,7 +34,7 @@ urlpatterns = [
     path('exercise_info/', include('exercise_info.urls')),
     path('user_center/', user_center.views.get_user_info, name= 'user_center'),
     path('api/exercise_goals/', DB_HealthManagement.views.get_exercise_goals, name='get_exercise_goals'),
-
+    path('reset_password', user_center.views.reset_password.as_view(), name= 'reset_password')
 ]
 
 

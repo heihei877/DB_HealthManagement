@@ -1,6 +1,8 @@
 
 
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.http import JsonResponse
@@ -59,4 +61,25 @@ def get_user_info(request):
         messages.error(request, 'You must be logged in to view this page.')
         return redirect('login')
 
+class reset_password(View):
+        def get(self, request):
+            if not request.user.is_authenticated:
+                messages.info(request, "您尚未登录，无法修改密码！")
+                return redirect('login')
+            form = PasswordChangeForm(request.user)
+            return render(request, 'user_center/reset_password.html', {'form': form})
 
+        def post(self, request):
+            if not request.user.is_authenticated:
+                messages.info(request, "您尚未登录，无法修改密码！")
+                return redirect('login')
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)  # 保持用户登录状态
+                messages.success(request, "密码修改成功！")
+                return redirect('user_center')
+            else:
+                for msg in form.error_messages:
+                    messages.error(request, form.error_messages[msg][0])
+                return render(request, 'user_center/reset_password.html', {'form': form})
