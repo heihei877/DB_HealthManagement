@@ -16,7 +16,9 @@ import pytz
 
 # 返回所有的运动记录
 def exercise_record_list(request):
-    exercises = models.ExerciseRecord.objects.all().order_by('exercise_id')
+    # exercises = models.ExerciseRecord.objects.all().order_by('exercise_id')
+    current_user = request.user
+    exercises = models.ExerciseRecord.objects.filter(user_id=current_user.id).order_by('exercise_id')
     exercises_with_duration = []
     for exercise in exercises:
         duration = exercise.end_time - exercise.start_time
@@ -62,9 +64,10 @@ def delete_exercise_record(request, exerciseid):
 
 # 返回所有运动目标
 def exercise_goal_list(request):
+    current_user = request.user
     # goals = ExerciseGoal.objects.all()
     # return render(request, 'exercise_info/exercise_goal_list.html', {'goals': goals})
-    goals = ExerciseGoal.objects.all()
+    goals = ExerciseGoal.objects.filter(user_id=current_user.id).order_by('exercise_goal_id')
     goals_with_progress = []
     total_cnt = 0
     complete_cnt = 0
@@ -79,8 +82,6 @@ def exercise_goal_list(request):
         now_str = timenow.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] + '+0000'
         # 将字符串解析回datetime对象，注意这里的格式字符串需要与now_str的格式匹配
         now_datetime = datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S.%f%z')
-        print(now_datetime)
-        print(goal.end_time)
 
         if progress >= 100:
             complete_cnt = complete_cnt + 1
@@ -92,7 +93,6 @@ def exercise_goal_list(request):
             else:
                 timeout = 0
 
-        print(timeout)
         goals_with_progress.append({
             'goal': goal,
             'progress': progress,
