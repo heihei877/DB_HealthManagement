@@ -70,7 +70,6 @@
     <!--DataTables Sample [ SAMPLE ]-->
     <script src="/static/nifty/js/demo/tables-datatables.js"></script>
 
-
 </head>
 
 <!--TIPS-->
@@ -251,6 +250,8 @@
                         <!--===================================================-->
                         <!--End Data Table-->
                         <script>
+                            $.fn.dataTable.ext.errMode = 'none';       //屏蔽掉报错弹窗
+                            
                             var rowSelection = $('#exercise-record-table').DataTable({
                                 "responsive": true,
                                 "language": {
@@ -287,6 +288,8 @@
                                     });
                                 });
                             });
+                            
+                            
 
                         </script>
 

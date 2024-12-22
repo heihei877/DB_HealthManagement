@@ -218,6 +218,7 @@
                 </div>
 
                 <script>
+                    $.fn.dataTable.ext.errMode = 'none';       //屏蔽掉报错弹窗
                     // 从 Django 模板中传递过来的数据
                     var weightData = {{ weight_data|safe }};
                     var heightData = {{ height_data|safe }};
