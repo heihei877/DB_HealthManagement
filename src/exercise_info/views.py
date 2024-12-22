@@ -31,22 +31,6 @@ def exercise_record_list(request):
     return render(request, "exercise_info/exercise_record_list.html", {"exercises": exercises_with_duration})
 
 
-# 返回指定id的运动记录
-def exercise_record_detail(request, exerciseid):
-    if exerciseid > 0:
-        exercise = get_object_or_404(ExerciseRecord, exercise_id=exerciseid)
-        return render(request, 'exercise_info/exercise_record_detail.html', {'exercise': exercise})
-    else:
-        exerciseid = request.GET.get('exerciseid', None)
-        if exerciseid:
-            try:
-                exercise = ExerciseRecord.objects.get(exercise_id=exerciseid)
-                return render(request, 'exercise_info/exercise_record_detail.html', {'exercise': exercise})
-            except ExerciseRecord.DoesNotExist:
-                raise Http404("运动记录未找到。")
-        return render(request, 'exercise_info/exercise_record_list.html')
-
-
 # 增加运动记录
 def add_exercise_record(request):
     current_user = request.user
