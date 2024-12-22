@@ -54,9 +54,14 @@
 
 
 # 贡献者
-add2333
+add2333--运动数据、健康数据、用户登录功能实现
 
-heihei877
+heihei877--运动目标、个人中心功能实现
+
+<a href="https://github.com/heihei877/DB_HealthManagement/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=heihei877/DB_HealthManagement" />
+</a>
+
 
 # 许可证
 [MIT license](./LICENSE)
