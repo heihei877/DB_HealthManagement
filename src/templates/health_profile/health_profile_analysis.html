@@ -164,18 +164,18 @@
                                         {% if result.bmi %}
                                         {{ result.bmi }} BMI
                                         {% else %}
-                                        无BMI数据
+                                        无 BMI 数据
                                         {% endif %}
                                     </div>
                                 </div>
                                 {% if result.bmi_color == 'success' %}
-                                <p>您的BMI值属于正常范围 (18.5 - 24)</p>
+                                <p>您的 BMI 值属于正常范围 (18.5 - 24)</p>
                                 {% elif result.bmi_color == 'warning' %}
-                                <p>您的BMI值稍高 (24 - 30)</p>
+                                <p>您的 BMI 值稍高 (24 - 30)</p>
                                 {% elif result.bmi_color == 'danger' %}
-                                <p>您的BMI值偏低或过高，建议咨询医生</p>
+                                <p>您的 BMI 值偏低或过高，建议咨询医生</p>
                                 {% else %}
-                                <p>暂无BMI数据</p>
+                                <p>暂无 BMI 数据</p>
                                 {% endif %}
                             </div>
                         </div>
