@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import random
 
 # 定义生成数据的数量
-num_records = 100
+num_records = 20
 
 # 定义可能的运动类型
 exercise_types = ['跑步', '散步', '游泳', '自由活动']
@@ -19,7 +19,7 @@ with open('exercise_info.csv', 'w', newline='') as csvfile:
     # 生成数据并写入CSV文件
     for i in range(1, num_records + 1):
         # 随机生成用户ID
-        user_id = random.randint(1, 100)  # 假设用户ID范围是1到100
+        user_id = 3
 
         # 随机选择运动类型
         exercise_type = random.choice(exercise_types)

@@ -40,7 +40,7 @@ with open('health_profile.csv', 'w', newline='') as csvfile:
             'systolic_bp': f"{random_systolic_bp:.2f}",
             'diastolic_bp': f"{random_diastolic_bp:.2f}",
             'blood_sugar': f"{random_blood_sugar:.2f}",
-            'user_id': 1  # 假设所有记录的用户ID都是1
+            'user_id': 3  # 假设所有记录的用户ID都是1
         }
 
         # 写入记录
