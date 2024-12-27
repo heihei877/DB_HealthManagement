@@ -82,7 +82,7 @@ def exercise_goal_list(request):
         now_str = timenow.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] + '+0000'
         # 将字符串解析回datetime对象，注意这里的格式字符串需要与now_str的格式匹配
         now_datetime = datetime.strptime(now_str, '%Y-%m-%d %H:%M:%S.%f%z')
-
+        timeout=1
         if progress >= 100:
             complete_cnt = complete_cnt + 1
 
