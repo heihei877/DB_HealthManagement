@@ -49,14 +49,20 @@
 3. 在 `app` 的 `model.py` 中创建你的模型，该模型对应数据库中的一张表，模型的属性对应表的属性，`Django` 会为你添加如 `id` 等必要的属性（如未指定主键）；
 4. 在 `app` 的 `view.py` 中创建你的视图函数，该函数为网页提供所需数据，可视为数据库与前端显示的中间件；
 5. 运行 `python ./src/manager.py makemigrations` 将模型转换为创建数据库表的 `sql` 指令，运行 `python ./src/manager.py migrate` 运行生成的 `sql` 指令。
-
 6. 在浏览器中浏览成果。
+
+（本项目的前端使用了 [nifty](https://github.com/phachon/html-templates/tree/master/nifty-Admin) 模板，您可以下载该模板了解其使用方式；若您已经了解，可以直接使用，模板依赖文件在 `./src/static/nifty` 中）
 
 
 # 贡献者
-add2333
+add2333--运动数据、健康数据、用户登录功能实现
 
-heihei877
+heihei877--运动目标、个人中心功能实现
+
+<a href="https://github.com/heihei877/DB_HealthManagement/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=heihei877/DB_HealthManagement" />
+</a>
+
 
 # 许可证
 [MIT license](./LICENSE)
